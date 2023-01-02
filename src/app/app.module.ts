@@ -9,6 +9,13 @@ import {HttpClientModule} from "@angular/common/http";
 import {MaterialModule} from "./components/material/material.module";
 import {LayoutModule} from "./components/layout/layout.module";
 import {HomeModule} from "./components/home/home.module";
+import {MyDataModule} from "./components/my-data/my-data.module";
+import {ExperienceSectionModule} from "./components/experience-section/experience-section.module";
+import {SeparatorSectionModule} from "./components/separator-section/separator-section.module";
+import {EducationSectionModule} from "./components/education-section/education-section.module";
+import {SkillsModule} from "./components/skills/skills.module";
+import {ProyectSectionModule} from "./components/proyect-section/proyect-section.module";
+import {LoginModule} from "./components/login/login.module";
 
 @NgModule({
   declarations: [
@@ -26,7 +33,14 @@ import {HomeModule} from "./components/home/home.module";
     HttpClientModule,
     MaterialModule,
     LayoutModule,
-    HomeModule
+    HomeModule,
+    MyDataModule,
+    ExperienceSectionModule,
+    SeparatorSectionModule,
+    EducationSectionModule,
+    SkillsModule,
+    ProyectSectionModule,
+    LoginModule
   ],
   providers: [],
   exports: [],

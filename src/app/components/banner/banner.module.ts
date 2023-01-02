@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { BannerRoutingModule } from './banner-routing.module';
 import { BannerComponent } from './banner/banner.component';
 import {MaterialModule} from "../material/material.module";
+import {MyDataModule} from "../my-data/my-data.module";
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import {MaterialModule} from "../material/material.module";
   imports: [
     CommonModule,
     BannerRoutingModule,
-    MaterialModule
+    MaterialModule,
+    MyDataModule
   ]
 })
 export class BannerModule { }

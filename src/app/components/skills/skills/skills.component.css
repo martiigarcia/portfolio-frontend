@@ -1,0 +1,29 @@
+.card{
+  margin-top: 20px;
+  margin-left: 5%;
+  margin-right: 5%;
+  text-align: center;
+}
+.main-div{
+  margin-top: 10px;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+.title{
+  text-align: initial;
+}
+.p{
+  font-size: 17px;
+}
+.grid{
+  text-align: justify;
+}
+.vl {
+  border-left: 1px solid;
+  color: #333333;
+  height: 500px;
+}
+.example-margin {
+  margin-top: 20px ;
+
+}

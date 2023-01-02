@@ -1,0 +1,70 @@
+<div class="card">
+  <mat-card>
+
+    <mat-card-title-group>
+      <mat-card-header>
+        <mat-card-title class="title">Habilidades</mat-card-title>
+      </mat-card-header>
+      <mat-card-actions align="end">
+        <button mat-button>
+          <mat-icon>edit</mat-icon>
+          EDITAR
+        </button>
+      </mat-card-actions>
+    </mat-card-title-group>
+
+    <div class="main-div">
+
+      <mat-card-content>
+        <hr/>
+        <mat-grid-list cols="12" class="grid">
+
+          <mat-list class="example-list-wrapping">
+            <mat-grid-tile [colspan]="3" [rowspan]="2">
+              <mat-list-item lines="5">
+
+                <span matListItemTitle>Habilidad 1</span>
+
+                <mat-progress-spinner
+                  class="example-margin"
+                  [color]="color"
+                  [mode]="mode"
+                  [value]="value">
+                </mat-progress-spinner>
+
+              </mat-list-item>
+            </mat-grid-tile>
+
+            <mat-grid-tile [colspan]="3" [rowspan]="2">
+              <mat-list-item lines="5">
+                <span matListItemTitle>Habilidad 2</span>
+                <mat-progress-spinner
+                  class="example-margin"
+                  [color]="color"
+                  [mode]="mode"
+                  [value]="value">
+                </mat-progress-spinner>
+              </mat-list-item>
+            </mat-grid-tile>
+
+            <mat-grid-tile [colspan]="3" [rowspan]="2">
+              <mat-list-item lines="5">
+                <span matListItemTitle>Habilidad 3</span>
+                <mat-progress-spinner
+                  class="example-margin"
+                  [color]="color"
+                  [mode]="mode"
+                  [value]="value">
+                </mat-progress-spinner>
+              </mat-list-item>
+            </mat-grid-tile>
+          </mat-list>
+
+        </mat-grid-list>
+
+      </mat-card-content>
+
+    </div>
+
+  </mat-card>
+</div>
