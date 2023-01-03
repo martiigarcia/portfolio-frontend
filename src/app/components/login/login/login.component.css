@@ -5,9 +5,8 @@ body{
   margin: 0;
   background-color: rgba(173, 127, 255, 0.55);
 }
-body {
-
-
+.title{
+  text-align: center;
 }
 .center-content{
   display: flex;
