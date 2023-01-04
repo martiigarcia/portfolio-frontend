@@ -25,7 +25,7 @@
               </mat-card-title>
             </mat-grid-tile>
             <mat-grid-tile [colspan]="2" [rowspan]="1">
-              <mat-card-subtitle>Martina</mat-card-subtitle>
+              <mat-card-subtitle>{{user.name}}</mat-card-subtitle>
             </mat-grid-tile>
             <mat-grid-tile [colspan]="3" [rowspan]="1">
               <div class="vl"></div>
@@ -34,7 +34,7 @@
               <mat-card-title>Apellido:</mat-card-title>
             </mat-grid-tile>
             <mat-grid-tile [colspan]="2" [rowspan]="1">
-              <mat-card-subtitle>Garcia</mat-card-subtitle>
+              <mat-card-subtitle>{{user.surname}}</mat-card-subtitle>
             </mat-grid-tile>
 
           </mat-grid-list>
@@ -43,10 +43,10 @@
           <mat-grid-list cols="12" class="grid">
 
             <mat-grid-tile [colspan]="2" [rowspan]="1">
-              <mat-card-title>Fecha de nacimiento:</mat-card-title>
+              <mat-card-title>Email:</mat-card-title>
             </mat-grid-tile>
             <mat-grid-tile [colspan]="2" [rowspan]="1">
-              <mat-card-subtitle>06/06/2001</mat-card-subtitle>
+              <mat-card-subtitle>{{user.email}}</mat-card-subtitle>
             </mat-grid-tile>
             <mat-grid-tile [colspan]="3" [rowspan]="1">
               <div class="vl"></div>
@@ -55,29 +55,11 @@
               <mat-card-title>Años:</mat-card-title>
             </mat-grid-tile>
             <mat-grid-tile [colspan]="2" [rowspan]="1">
-              <mat-card-subtitle>21</mat-card-subtitle>
+              <mat-card-subtitle>{{user.age}}</mat-card-subtitle>
             </mat-grid-tile>
 
           </mat-grid-list>
           <hr/>
-          <mat-grid-list cols="12" class="grid">
-            <mat-grid-tile [colspan]="2" [rowspan]="1">
-              <mat-card-title>Email:</mat-card-title>
-            </mat-grid-tile>
-            <mat-grid-tile [colspan]="2" [rowspan]="1">
-              <mat-card-subtitle>mar@gmail.com</mat-card-subtitle>
-            </mat-grid-tile>
-            <mat-grid-tile [colspan]="3" [rowspan]="1">
-              <div class="vl"></div>
-            </mat-grid-tile>
-            <mat-grid-tile [colspan]="2" [rowspan]="1">
-              <mat-card-title>Nombre de usuario:</mat-card-title>
-            </mat-grid-tile>
-            <mat-grid-tile [colspan]="2" [rowspan]="1">
-              <mat-card-subtitle>mar</mat-card-subtitle>
-            </mat-grid-tile>
-
-          </mat-grid-list>
 
         </mat-grid-list>
 

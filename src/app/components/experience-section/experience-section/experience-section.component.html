@@ -20,15 +20,21 @@
         <hr/>
         <mat-grid-list cols="6" class="grid">
 
-          <mat-list class="example-list-wrapping">
-            <mat-list-item lines="3">
-              <span matListItemTitle>Experiencia 1</span>
-              <span>Esta es una descripcion de la experiencia laboral numero 1</span>
+          <mat-list class="example-list-wrapping" *ngFor="let experience of experiences">
+            <mat-list-item lines="5">
+              <span matListItemTitle>{{experience.title}}</span>
+              <span>{{experience.description}}</span>
+              <div class="example-button-container">
+                <button mat-mini-fab color="accent" matTooltip="EDITAR">
+                  <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-mini-fab color="warn" matTooltip="ELIMINAR">
+                <mat-icon>delete</mat-icon>
+              </button>
+              </div>
+
             </mat-list-item>
-            <mat-list-item lines="3">
-              <span matListItemTitle>Experiencia 2</span>
-              Esta es una descripcion de la experiencia laboral numero 2
-            </mat-list-item>
+
           </mat-list>
 
         </mat-grid-list>

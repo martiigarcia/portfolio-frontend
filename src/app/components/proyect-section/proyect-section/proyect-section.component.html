@@ -22,21 +22,22 @@
 
       <mat-card-content>
         <hr/>
-        <mat-grid-list cols="6" class="grid">
+        <mat-grid-list cols="6" class="grid" *ngFor="let proyect of proyects">
 
           <mat-list class="example-list-wrapping">
-            <mat-list-item lines="3">
-              <span matListItemTitle>Proyecto 1</span>
-              <span>Esta es una descripcion del primer proyecto</span>
+            <mat-list-item lines="5">
+              <span matListItemTitle>{{proyect.name}}</span>
+              <span>{{proyect.description}}</span>
+              <div class="example-button-container">
+                <button mat-mini-fab color="accent" matTooltip="EDITAR">
+                  <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-mini-fab color="warn" matTooltip="ELIMINAR">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </div>
             </mat-list-item>
-            <mat-list-item lines="3">
-              <span matListItemTitle>Proyecto 2</span>
-              Esta es una descripcion del segundo proyecto
-            </mat-list-item>
-            <mat-list-item lines="3">
-              <span matListItemTitle>Proyecto 3</span>
-              Esta es una descripcion del tercer proyecto
-            </mat-list-item>
+
           </mat-list>
 
         </mat-grid-list>
