@@ -1,45 +1,51 @@
 <body>
 <div class="center-content">
   <mat-card>
-    <mat-card-header>
+    <mat-card-header class="center-content">
       <mat-card-title class="title">Login</mat-card-title>
-      <mat-card-subtitle>Complete los campos para ingresar al sistema</mat-card-subtitle>
+      <mat-card-subtitle class="title">Complete los campos para ingresar al sistema</mat-card-subtitle>
     </mat-card-header>
 
     <mat-card-content>
       <mat-divider></mat-divider>
       <div>
+        <form [formGroup]="loginForm" novalidate>
+          <div class="example-form">
 
-        <form class="example-form">
-
-
-          <table class="example-full-width" cellspacing="0">
-            <tr>
-              <td>
-                <mat-form-field class="example-full-width">
-                  <mat-label>Email</mat-label>
-                  <input matInput type="email">
-                </mat-form-field>
-              </td>
-
-            </tr>
-          </table>
-
-          <p>
             <mat-form-field class="example-full-width">
-              <mat-label>Password</mat-label>
-              <input matInput type="password">
+              <mat-label>Email</mat-label>
+              <input matInput type="email" formControlName="email">
+              <button mat-icon-button matSuffix [disabled]="true">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                     class="bi bi-envelope" viewBox="0 0 16 16">
+                  <path
+                    d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/>
+                </svg>
+              </button>
             </mat-form-field>
 
-          </p>
+
+            <mat-form-field appearance="fill" class="example-full-width">
+              <mat-label>Contraseña</mat-label>
+              <input [type]="hide ? 'password' : 'text'" matInput formControlName="password">
+              <button mat-icon-button matSuffix (click)="hide = !hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+              <ng-container *ngIf="fc.password.invalid && (fc.password.dirty || fc.password.touched)">
+                <mat-error *ngIf="fc.password.errors?.required">
+                  Este campo es requerido.
+                </mat-error>
+              </ng-container>
+            </mat-form-field>
 
 
+          </div>
         </form>
       </div>
     </mat-card-content>
 
     <mat-card-actions align="end">
-      <button mat-button>
+      <button mat-button (click)="logIn()">
         INGRESAR
       </button>
     </mat-card-actions>

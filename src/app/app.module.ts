@@ -16,6 +16,7 @@ import {EducationSectionModule} from "./components/education-section/education-s
 import {SkillsModule} from "./components/skills/skills.module";
 import {ProyectSectionModule} from "./components/proyect-section/proyect-section.module";
 import {LoginModule} from "./components/login/login.module";
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import {LoginModule} from "./components/login/login.module";
     AppRoutingModule,
     RouterModule,
     HttpClientModule,
+    ReactiveFormsModule,
     MaterialModule,
     LayoutModule,
     HomeModule,
