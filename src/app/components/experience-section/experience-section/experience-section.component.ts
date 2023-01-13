@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {Experience} from "../../../domain/Experience";
+import {WorkExperience} from "../../../domain/WorkExperience";
 import {Router} from "@angular/router";
 import {UserServiceService} from "../../../services/UserService/user-service.service";
 
@@ -10,7 +10,7 @@ import {UserServiceService} from "../../../services/UserService/user-service.ser
 })
 export class ExperienceSectionComponent {
 
-  experiences : Experience[] = [];
+  experiences : WorkExperience[] = [];
 
   constructor(public router: Router,
               private userServiceService: UserServiceService) {
@@ -20,8 +20,8 @@ export class ExperienceSectionComponent {
   }
 
   getExperiencesByUser(id:number){
-    this.userServiceService.findExperienceByUser(id).subscribe(experience =>{
-      console.log(experience)
+    this.userServiceService.findWorkExperienceByUser(id).subscribe(experience =>{
+      // console.log(experience)
       this.experiences = experience;
     })
   }

@@ -25,7 +25,7 @@ export class MyDataComponent {
 
   findAll() {
     this.userServiceService.findAll().subscribe(list => {
-      console.log(list)
+      // console.log(list)
       this.users = list;
       this.loading = false;
     });
@@ -33,13 +33,13 @@ export class MyDataComponent {
 
   findOne() {
     this.userServiceService.findOne(1).subscribe(user => {
-      console.log(user)
+      // console.log(user)
       this.user = user;
-      if(this.user._admin === true){
-        console.log("ES VERDADERO")
-      }else{
-        console.log("ES FALSO")
-      }
+      // if(this.user._admin === true){
+      //   console.log("ES VERDADERO")
+      // }else{
+      //   console.log("ES FALSO")
+      // }
     })
   }
 }

@@ -7,9 +7,10 @@ export class User {
   private _email: string;
   private _password: string;
   private _admin: boolean;
+  private _information: string;
 
 
-  constructor(id: number, name: string, surname: string, age: number, email: string, password: string, admin:boolean) {
+  constructor(id: number, name: string, surname: string, age: number, email: string, password: string, admin: boolean, information: string) {
     this._id = id;
     this._name = name;
     this._surname = surname;
@@ -17,6 +18,7 @@ export class User {
     this._email = email;
     this._password = password;
     this._admin = admin;
+    this._information = information;
   }
 
 
@@ -74,5 +76,13 @@ export class User {
 
   set admin(value: boolean) {
     this._admin = value;
+  }
+
+  get information(): string {
+    return this._information;
+  }
+
+  set information(value: string) {
+    this._information = value;
   }
 }

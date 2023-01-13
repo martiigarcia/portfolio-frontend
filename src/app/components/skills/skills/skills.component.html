@@ -17,47 +17,24 @@
 
       <mat-card-content>
         <hr/>
-        <mat-grid-list cols="12" class="grid">
-
+        <mat-grid-list cols="12" class="grid" >
+<!-- <mat-grid-list cols="6" class="grid" *ngFor="let proyect of proyects">-->
           <mat-list class="example-list-wrapping">
-            <mat-grid-tile [colspan]="3" [rowspan]="2">
+            <mat-grid-tile [colspan]="3" [rowspan]="2" *ngFor="let skill of skills">
               <mat-list-item lines="5">
 
-                <span matListItemTitle>Habilidad 1</span>
+                <span matListItemTitle>{{skill.title}}</span>
 
                 <mat-progress-spinner
                   class="example-margin"
                   [color]="color"
                   [mode]="mode"
-                  [value]="value">
+                  [value]=skill.percentage>
                 </mat-progress-spinner>
 
               </mat-list-item>
             </mat-grid-tile>
 
-            <mat-grid-tile [colspan]="3" [rowspan]="2">
-              <mat-list-item lines="5">
-                <span matListItemTitle>Habilidad 2</span>
-                <mat-progress-spinner
-                  class="example-margin"
-                  [color]="color"
-                  [mode]="mode"
-                  [value]="value">
-                </mat-progress-spinner>
-              </mat-list-item>
-            </mat-grid-tile>
-
-            <mat-grid-tile [colspan]="3" [rowspan]="2">
-              <mat-list-item lines="5">
-                <span matListItemTitle>Habilidad 3</span>
-                <mat-progress-spinner
-                  class="example-margin"
-                  [color]="color"
-                  [mode]="mode"
-                  [value]="value">
-                </mat-progress-spinner>
-              </mat-list-item>
-            </mat-grid-tile>
           </mat-list>
 
         </mat-grid-list>
@@ -65,6 +42,12 @@
       </mat-card-content>
 
     </div>
-
+<!--    <div (scroll)="onScroll()">-->
+<!--      &lt;!&ndash; Your content here &ndash;&gt;-->
+<!--      <ng-container *ngIf="showSpinner">-->
+<!--        <mat-spinner [value]="showSpinner ? 10: 50"   [mode]="mode"-->
+<!--        ></mat-spinner>-->
+<!--      </ng-container>-->
+<!--    </div>-->
   </mat-card>
 </div>

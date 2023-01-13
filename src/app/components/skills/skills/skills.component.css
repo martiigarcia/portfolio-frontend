@@ -25,5 +25,10 @@
 }
 .example-margin {
   margin-top: 20px ;
-
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  -webkit-transition: 0.65s ease-out;
+  -o-transition: 0.65s ease-out;
+  transition: 0.65s ease-out;
 }

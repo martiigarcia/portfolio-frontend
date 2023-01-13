@@ -1,14 +1,23 @@
 <div class="card">
   <mat-card>
-
     <mat-card-title-group>
+      <div class="div-header-titles">
       <mat-card-header>
-        <mat-card-title class="title">Mis datos</mat-card-title>
+        <div mat-card-avatar class="example-header-image"></div>
+        <div class="div-header">
+          <mat-card-title>Mis datos</mat-card-title>
+          <mat-card-subtitle>{{user.information}}</mat-card-subtitle>
+        </div>
       </mat-card-header>
-      <mat-card-actions align="end">
-        <button mat-button>
-          <mat-icon>edit</mat-icon>EDITAR</button>
-      </mat-card-actions>
+      </div>
+      <div class="div-header-option">
+        <mat-card-actions align="end">
+          <button mat-button>
+            <mat-icon>edit</mat-icon>
+            EDITAR
+          </button>
+        </mat-card-actions>
+      </div>
     </mat-card-title-group>
 
     <div class="main-div">

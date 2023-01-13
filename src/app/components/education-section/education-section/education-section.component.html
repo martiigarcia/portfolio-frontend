@@ -18,20 +18,13 @@
 
       <mat-card-content>
         <hr/>
-        <mat-grid-list cols="6" class="grid">
+        <mat-grid-list cols="6" class="grid" *ngFor="let experience of experiences">
 
           <mat-list class="example-list-wrapping">
             <mat-list-item lines="3">
-              <span matListItemTitle>Primaria</span>
-              <span>Esta es una descripcion de la primaria</span>
-            </mat-list-item>
-            <mat-list-item lines="3">
-              <span matListItemTitle>Secundaria</span>
-              Esta es una descripcion de la secundaria
-            </mat-list-item>
-            <mat-list-item lines="3">
-              <span matListItemTitle>Universidad</span>
-              Esta es una descripcion de la universidad
+              <span matListItemTitle>{{experience.type}} {{experience.title == null?"": " - "+experience.title}}</span>
+              <span>{{experience.period}}</span><br>
+              <span>{{experience.place}}</span>
             </mat-list-item>
           </mat-list>
 

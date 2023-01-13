@@ -21,9 +21,9 @@ export class ProyectSectionComponent {
   }
 
   findProyectsByUser(id: number) {
-    this.userServiceService.findProyectsByUser(id).subscribe(proyects => {
-      console.log(proyects);
-      this.proyects = proyects;
+    this.userServiceService.findProyectsByUser(id).subscribe(proyectsX => {
+      console.log(proyectsX);
+      this.proyects = proyectsX;
     })
   }
 

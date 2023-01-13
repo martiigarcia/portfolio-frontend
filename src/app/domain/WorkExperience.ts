@@ -1,18 +1,21 @@
 import {User} from "./User";
 
-export class Proyect {
+export class WorkExperience {
 
   private _id: number;
-  private _name: string;
+  private _title: string;
   private _description: string;
   private _period: string;
+  private _place: string;
   private _user: User;
 
-  constructor(id: number, name: string, description: string, period: string, user: User) {
+
+  constructor(id: number, title: string, description: string, period: string, place: string, user: User) {
     this._id = id;
-    this._name = name;
+    this._title = title;
     this._description = description;
     this._period = period;
+    this._place = place;
     this._user = user;
   }
 
@@ -24,12 +27,12 @@ export class Proyect {
     this._id = value;
   }
 
-  get name(): string {
-    return this._name;
+  get title(): string {
+    return this._title;
   }
 
-  set name(value: string) {
-    this._name = value;
+  set title(value: string) {
+    this._title = value;
   }
 
   get description(): string {
@@ -46,6 +49,14 @@ export class Proyect {
 
   set period(value: string) {
     this._period = value;
+  }
+
+  get place(): string {
+    return this._place;
+  }
+
+  set place(value: string) {
+    this._place = value;
   }
 
   get user(): User {
