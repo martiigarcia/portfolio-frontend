@@ -3,12 +3,15 @@ import { CommonModule } from '@angular/common';
 
 import { SkillsRoutingModule } from './skills-routing.module';
 import {MaterialModule} from "../material/material.module";
-import { SkillsComponent } from './skills/skills.component';
+import {AddSkillDialog, DialogContentExampleDialog, SkillsComponent} from './skills/skills.component';
+import {FormsModule} from "@angular/forms";
 
 
 @NgModule({
   declarations: [
-    SkillsComponent
+    SkillsComponent,
+    DialogContentExampleDialog,
+    AddSkillDialog,
   ],
   exports: [
     SkillsComponent
@@ -16,7 +19,9 @@ import { SkillsComponent } from './skills/skills.component';
   imports: [
     CommonModule,
     SkillsRoutingModule,
-    MaterialModule
-  ]
+    MaterialModule,
+    FormsModule
+  ],
+  entryComponents:[DialogContentExampleDialog, AddSkillDialog]
 })
 export class SkillsModule { }

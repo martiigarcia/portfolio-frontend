@@ -1,30 +1,38 @@
 <div class="card">
   <mat-card>
-
-    <mat-card-title-group>
-      <mat-card-header>
+    <mat-card-title-group [ngClass]="{'title': !logged}">
+      <mat-card-header class="title">
         <mat-card-title class="title">Habilidades</mat-card-title>
       </mat-card-header>
-      <mat-card-actions align="end">
-        <button mat-button>
+      <mat-card-actions align="end" *ngIf="logged">
+        <button mat-button (click)="edit()">
           <mat-icon>edit</mat-icon>
           EDITAR
+        </button>
+        <button mat-button (click)="add()">
+          <mat-icon>add</mat-icon>
+          AGREGAR
         </button>
       </mat-card-actions>
     </mat-card-title-group>
 
     <div class="main-div">
+      <!--         *ngIf="showSpinner"-->
+
 
       <mat-card-content>
         <hr/>
-        <mat-grid-list cols="12" class="grid" >
-<!-- <mat-grid-list cols="6" class="grid" *ngFor="let proyect of proyects">-->
+        <mat-grid-list cols="12" class="grid">
+          <!-- <mat-grid-list cols="6" class="grid" *ngFor="let proyect of proyects">-->
           <mat-list class="example-list-wrapping">
             <mat-grid-tile [colspan]="3" [rowspan]="2" *ngFor="let skill of skills">
               <mat-list-item lines="5">
 
-                <span matListItemTitle>{{skill.title}}</span>
 
+                <span matListItemTitle>{{skill.title}}
+                  <button mat-button (click)="openDialog()" *ngIf="editMode"><mat-icon>edit</mat-icon></button>
+                  <button mat-button (click)="deleteSkill()" *ngIf="editMode"><mat-icon>delete</mat-icon></button>
+                </span>
                 <mat-progress-spinner
                   class="example-margin"
                   [color]="color"
@@ -42,6 +50,42 @@
       </mat-card-content>
 
     </div>
+    <!--    <div *ngIf="!showSpinner">-->
+    <!--      <mat-card-content>-->
+    <!--        <mat-grid-list cols="12" class="grid">-->
+    <!--          <mat-list class="example-list-wrapping">-->
+    <!--            <mat-grid-tile [colspan]="3" [rowspan]="2" *ngFor="let skill of skills">-->
+    <!--              <form [formGroup]="skillForm">-->
+    <!--                &lt;!&ndash;                <table class="example-full-width" cellspacing="0" >&ndash;&gt;-->
+    <!--                <tr>-->
+    <!--                  <td>-->
+    <!--                    <mat-form-field>-->
+    <!--                      <mat-label>Nombre</mat-label>-->
+    <!--                      &lt;!&ndash;                        {{skill.title}}&ndash;&gt;-->
+    <!--                      <input matInput type="text" formControlName="title" value="{{skill.title}}">-->
+    <!--                    </mat-form-field>-->
+    <!--                  </td>-->
+    <!--                  <td>-->
+    <!--                    <mat-form-field>-->
+    <!--                      <mat-label>Porcentage %</mat-label>-->
+    <!--                      <input matInput type="number" formControlName="percentage"-->
+    <!--                             value="{{skill.percentage}}"-->
+    <!--                             ngModel="ngModel"-->
+    <!--                      >-->
+    <!--                      &lt;!&ndash;                        {{skill.percentage}}&ndash;&gt;-->
+    <!--                    </mat-form-field>-->
+    <!--                  </td>-->
+    <!--                </tr>-->
+    <!--                &lt;!&ndash;                </table>&ndash;&gt;-->
+    <!--              </form>-->
+    <!--            </mat-grid-tile>-->
+    <!--          </mat-list>-->
+    <!--        </mat-grid-list>-->
+    <!--      </mat-card-content>-->
+    <!--    </div>-->
+
+  </mat-card>
+</div>
 <!--    <div (scroll)="onScroll()">-->
 <!--      &lt;!&ndash; Your content here &ndash;&gt;-->
 <!--      <ng-container *ngIf="showSpinner">-->
@@ -49,5 +93,3 @@
 <!--        ></mat-spinner>-->
 <!--      </ng-container>-->
 <!--    </div>-->
-  </mat-card>
-</div>

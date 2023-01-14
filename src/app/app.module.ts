@@ -17,6 +17,7 @@ import {SkillsModule} from "./components/skills/skills.module";
 import {ProyectSectionModule} from "./components/proyect-section/proyect-section.module";
 import {LoginModule} from "./components/login/login.module";
 import {ReactiveFormsModule} from "@angular/forms";
+import {DialogContentExampleDialog} from "./components/skills/skills/skills.component";
 
 @NgModule({
   declarations: [
