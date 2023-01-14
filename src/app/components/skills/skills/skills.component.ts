@@ -56,7 +56,7 @@ export class SkillsComponent implements OnInit {
   }
 
   deleteSkill() {
-alert("DELETE")
+    alert("DELETE")
   }
 
   edit() {
