@@ -13,7 +13,8 @@ export class MyDataComponent {
   users: User[] = [];
   user: any;
   loading: boolean = false;
-
+  logged: boolean = true;
+  editMode: boolean = false;
 
   ngOnInit(): void {
     this.findOne();
@@ -41,5 +42,19 @@ export class MyDataComponent {
       //   console.log("ES FALSO")
       // }
     })
+  }
+  edit() {
+    this.editMode = !this.editMode;
+  }
+
+  add() {
+    alert("AGREGAR")
+  }
+
+  delete(){
+
+  }
+  editData(){
+
   }
 }

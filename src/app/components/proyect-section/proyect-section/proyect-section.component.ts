@@ -11,6 +11,8 @@ import {UserServiceService} from "../../../services/UserService/user-service.ser
 export class ProyectSectionComponent {
 
   proyects: Proyect[] = [];
+  logged: boolean = true;
+  editMode: boolean = false;
 
   constructor(public router: Router,
               private userServiceService: UserServiceService) {
@@ -25,6 +27,21 @@ export class ProyectSectionComponent {
       console.log(proyectsX);
       this.proyects = proyectsX;
     })
+  }
+
+  edit() {
+    this.editMode = !this.editMode;
+  }
+
+  add() {
+    alert("AGREGAR")
+  }
+
+  delete(){
+
+  }
+  editProyect(){
+
   }
 
 }

@@ -12,9 +12,9 @@
       </div>
       <div class="div-header-option">
         <mat-card-actions align="end">
-          <button mat-button>
-            <mat-icon>edit</mat-icon>
-            EDITAR
+          <button mat-button (click)="edit()" matTooltip="{{editMode? 'CERRAR EDICION ':'EDITAR'}}">
+            <mat-icon>{{editMode ? "close" : "edit"}}</mat-icon>
+            {{editMode ? "" : "EDITAR"}}
           </button>
         </mat-card-actions>
       </div>

@@ -1,14 +1,18 @@
 <div class="card">
   <mat-card>
 
-    <mat-card-title-group>
-      <mat-card-header>
-        <mat-card-title class="title">Educacion </mat-card-title>
+    <mat-card-title-group [ngClass]="{'title': !logged}">
+      <mat-card-header class="title">
+        <mat-card-title class="title">Educacion</mat-card-title>
       </mat-card-header>
-      <mat-card-actions align="end">
-        <button mat-button>
-          <mat-icon>edit</mat-icon>
-          EDITAR
+      <mat-card-actions align="end" *ngIf="logged">
+        <button mat-button (click)="add()" *ngIf="editMode">
+          <mat-icon>add</mat-icon>
+          AGREGAR
+        </button>
+        <button mat-button (click)="edit()">
+          <mat-icon>{{editMode ? "close" : "edit"}}</mat-icon>
+          {{editMode ? "CERRAR EDICION" : "EDITAR"}}
         </button>
       </mat-card-actions>
     </mat-card-title-group>
@@ -18,15 +22,41 @@
 
       <mat-card-content>
         <hr/>
-        <mat-grid-list cols="6" class="grid" *ngFor="let experience of experiences">
+        <mat-grid-list cols="12" class="grid">
+          <!-- <mat-grid-list cols="6" class="grid" *ngFor="let proyect of proyects">-->
+          <mat-list>
+            <mat-grid-tile [colspan]="6" [rowspan]="2" *ngFor="let experience of experiences">
+              <mat-list-item [lines]="5">
+                <!--            <mat-list class="example-list-wrapping">-->
+                <!--              <mat-list-item lines="3">-->
+                <span
+                  matListItemTitle>{{experience.type}} {{experience.title == null ? "" : " - " + experience.title}}</span>
+                <span>{{experience.period}}</span><br>
+                <span>{{experience.place}}</span>
 
-          <mat-list class="example-list-wrapping">
-            <mat-list-item lines="3">
-              <span matListItemTitle>{{experience.type}} {{experience.title == null?"": " - "+experience.title}}</span>
-              <span>{{experience.period}}</span><br>
-              <span>{{experience.place}}</span>
-            </mat-list-item>
+
+                <div class="buttons" *ngIf="editMode">
+                  <button class="button" mat-mini-fab color="accent" matTooltip="EDITAR" (click)="editExperience()">
+                    <mat-icon>edit</mat-icon>
+                  </button>
+                  <button class="button" mat-mini-fab color="warn" matTooltip="ELIMINAR" (click)="delete()">
+                    <mat-icon>delete</mat-icon>
+                  </button>
+                </div>
+                <hr>
+              </mat-list-item>
+            </mat-grid-tile>
           </mat-list>
+
+          <!--          <mat-list class="example-list-wrapping">-->
+          <!--            <mat-list-item lines="3">-->
+          <!--              <span matListItemTitle>{{experience.type}} {{experience.title == null?"": " - "+experience.title}}</span>-->
+          <!--              <span>{{experience.period}}</span><br>-->
+          <!--              <span>{{experience.place}}</span>-->
+          <!--              <button mat-button (click)="edit()" *ngIf="editMode"><mat-icon>edit</mat-icon></button>-->
+          <!--              <button mat-button (click)="delete()" *ngIf="editMode"><mat-icon>delete</mat-icon></button>-->
+          <!--            </mat-list-item>-->
+          <!--          </mat-list>-->
 
         </mat-grid-list>
 

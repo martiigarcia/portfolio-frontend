@@ -9,7 +9,8 @@ import {UserServiceService} from "../../../services/UserService/user-service.ser
   styleUrls: ['./experience-section.component.css']
 })
 export class ExperienceSectionComponent {
-
+  logged: boolean = true;
+  editMode: boolean = false;
   experiences : WorkExperience[] = [];
 
   constructor(public router: Router,
@@ -24,6 +25,20 @@ export class ExperienceSectionComponent {
       // console.log(experience)
       this.experiences = experience;
     })
+  }
+  edit() {
+    this.editMode = !this.editMode;
+  }
+
+  add() {
+    alert("AGREGAR")
+  }
+
+  delete(){
+
+  }
+  editExperience(){
+
   }
 
 }

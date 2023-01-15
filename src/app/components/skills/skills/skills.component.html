@@ -5,13 +5,13 @@
         <mat-card-title class="title">Habilidades</mat-card-title>
       </mat-card-header>
       <mat-card-actions align="end" *ngIf="logged">
-        <button mat-button (click)="edit()">
-          <mat-icon>edit</mat-icon>
-          EDITAR
-        </button>
-        <button mat-button (click)="add()">
+        <button mat-button (click)="add()" *ngIf="editMode">
           <mat-icon>add</mat-icon>
           AGREGAR
+        </button>
+        <button mat-button (click)="edit()">
+          <mat-icon>{{editMode ? "close" : "edit"}}</mat-icon>
+          {{editMode ? "CERRAR EDICION" : "EDITAR"}}
         </button>
       </mat-card-actions>
     </mat-card-title-group>
@@ -24,22 +24,27 @@
         <hr/>
         <mat-grid-list cols="12" class="grid">
           <!-- <mat-grid-list cols="6" class="grid" *ngFor="let proyect of proyects">-->
-          <mat-list class="example-list-wrapping">
-            <mat-grid-tile [colspan]="3" [rowspan]="2" *ngFor="let skill of skills">
-              <mat-list-item lines="5">
+          <mat-list>
+            <mat-grid-tile [colspan]="4" [rowspan]="2" *ngFor="let skill of skills">
+              <mat-list-item [lines]="5">
 
+                <div class="title">
+                  <span matListItemTitle>{{skill.title}}
+                    <button mat-button (click)="openDialog()" matTooltip="EDITAR" *ngIf="editMode"><mat-icon>edit</mat-icon></button>
+                    <button mat-button (click)="deleteSkill()" matTooltip="ELIMINAR" *ngIf="editMode"><mat-icon>delete</mat-icon></button>
+                  </span>
 
-                <span matListItemTitle>{{skill.title}}
-                  <button mat-button (click)="openDialog()" *ngIf="editMode"><mat-icon>edit</mat-icon></button>
-                  <button mat-button (click)="deleteSkill()" *ngIf="editMode"><mat-icon>delete</mat-icon></button>
-                </span>
-                <mat-progress-spinner
-                  class="example-margin"
-                  [color]="color"
-                  [mode]="mode"
-                  [value]=skill.percentage>
-                </mat-progress-spinner>
+                  <div class="loader-background">
+                    <!--                    <div class="loader"></div>-->
+                    <mat-progress-spinner
+                      class="loader"
+                      [color]="color"
+                      [mode]="mode"
+                      [value]=skill.percentage>
+                    </mat-progress-spinner>
 
+                  </div>
+                </div>
               </mat-list-item>
             </mat-grid-tile>
 

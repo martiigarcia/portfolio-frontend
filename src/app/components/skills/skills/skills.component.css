@@ -45,3 +45,82 @@
 .example-full-width {
   width: 100%;
 }
+.loader-background {
+  margin-top: 15px;
+  width: 100%;
+  height: 100%;
+  /*position: relative; !* Cambiamos de absolute a relative *!*/
+  background-color: rgba(234, 234, 234, 0);
+  z-index: 9999;
+}
+
+.loader{
+/*  !*border: 10px solid;*!*/
+/*  color: #1976d2;*/
+/*  background: hsla(333, 100%, 53%, 1);*/
+/*  background: linear-gradient(90deg, hsla(333, 100%, 53%, 1) 0%, hsla(33, 94%, 57%, 1) 100%);*/
+/*  border-radius: 50%;*/
+  /*box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;*/
+  position: relative;
+  /*background: linear-gradient(to left, #743ad5, #d53a9d);*/
+/*  !*border-left: 16px solid #3498db;*!*/
+/*  !*border-right: 16px solid #3498db;*!*/
+/*  !*border-radius: 50%;*!*/
+/*  width: 100%;*/
+/*  height: 100%;*/
+  animation: spin 3s linear ;
+  /*animation-fill-mode: forwards;*/
+  /*position: absolute; !* cambiamos de fixed a absolute *!*/
+/*  !* Ponemos el valor de left, bottom, right y top en 0 *!*/
+  left: 0;
+  bottom: 0;
+  right: 0;
+  top: 0;
+  margin: auto; /* Centramos vertical y horizontalmente */
+}
+/*.loader::ng-deep circle {*/
+/*  stroke: rgba(9, 2, 2, 0);*/
+/*  !*stroke: rgba(9, 2, 2, 0);*!*/
+/*}*/
+/*.loader {*/
+/*  background: linear-gradient(to right, #ff0000, #ffff00);*/
+/*  -webkit-background-clip: text;*/
+/*  -webkit-text-fill-color: transparent;*/
+/*}*/
+
+.loader::before{
+  position: absolute;
+  content: "";
+  height: 90%;
+  width: 90%;
+  background-color: rgb(255, 255, 255);
+  border-radius: 50%;
+  top:50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+
+@keyframes spin {
+  /*0% { transform: rotate(0deg); }*/
+  /*100% { transform: rotate(360deg); }*/
+  0% {
+    -webkit-transform: rotate3d(0, 0, 1, 0deg);
+    transform: rotate3d(0, 0, 1, 0deg);
+  }
+  25% {
+    -webkit-transform: rotate3d(0, 0, 1, 90deg);
+    transform: rotate3d(0, 0, 1, 90deg);
+  }
+  50% {
+    -webkit-transform: rotate3d(0, 0, 1, 180deg);
+    transform: rotate3d(0, 0, 1, 180deg);
+  }
+  75% {
+    -webkit-transform: rotate3d(0, 0, 1, 270deg);
+    transform: rotate3d(0, 0, 1, 270deg);
+  }
+  100% {
+    -webkit-transform: rotate3d(0, 0, 1, 360deg);
+    transform: rotate3d(0, 0, 1, 360deg);
+  }
+}

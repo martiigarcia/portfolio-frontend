@@ -6,6 +6,18 @@ import {UserServiceService} from "../../../services/UserService/user-service.ser
 import {Skill} from "../../../domain/Skill";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material/dialog";
+// import {matColorPalette, matColor} from '@angular/material/core';
+
+// const customPalette = {
+//   'primary': ['#ff0000', '#f44336', '#e53935'],
+//   'accent': ['#00ff00', '#4caf50', '#8bc34a'],
+//   'warn': ['#0000ff', '#3f51b5', '#2196f3']
+// }
+// matColorPalette('custom', customPalette);
+// const primaryColor = matColor('custom', 'primary');
+// const accentColor = matColor('custom', 'accent', 'A400');
+// const warnColor = matColor('custom', 'warn', '500');
+
 
 export interface DialogData {
   title: string;
@@ -73,6 +85,18 @@ export class SkillsComponent implements OnInit {
       console.log(`Dialog result: ${result}`);
     });
   }
+  // const elements = document.querySelectorAll('.animated-element');
+  // const animatedElements = Array.from(elements).map(e => new AnimatedElement(e));
+  //
+  // window.addEventListener('scroll', function () {
+  //   animatedElements.forEach(animatedElement => {
+  //     const elementTop = animatedElement.element.getBoundingClientRect().top;
+  //     if (elementTop < window.innerHeight) {
+  //       animatedElement.element.classList.add('fade-in');
+  //     }
+  //   });
+  // });
+
 
 }
 

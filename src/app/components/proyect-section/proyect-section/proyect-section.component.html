@@ -1,52 +1,54 @@
 <div class="card">
   <mat-card>
 
-    <mat-card-title-group>
-      <mat-card-header>
+    <mat-card-title-group [ngClass]="{'title': !logged}">
+      <mat-card-header class="title">
         <mat-card-title class="title">Proyectos</mat-card-title>
       </mat-card-header>
-      <mat-card-actions align="end">
-        <button mat-button>
-          <mat-icon>edit</mat-icon>
-          EDITAR
+      <mat-card-actions align="end" *ngIf="logged">
+        <button mat-button (click)="add()" *ngIf="editMode">
+          <mat-icon>add</mat-icon>
+          AGREGAR
         </button>
-        <button mat-button>
-          <mat-icon>delete</mat-icon>
-          BORRAR
+        <button mat-button (click)="edit()">
+          <mat-icon>{{editMode ? "close" : "edit"}}</mat-icon>
+          {{editMode ? "CERRAR EDICION" : "EDITAR"}}
         </button>
       </mat-card-actions>
     </mat-card-title-group>
 
     <div class="main-div">
-
-
       <mat-card-content>
         <hr/>
-        <mat-grid-list cols="6" class="grid" *ngFor="let proyect of proyects">
+        <mat-grid-list cols="12" class="grid">
+          <!-- <mat-grid-list cols="6" class="grid" *ngFor="let proyect of proyects">-->
+          <mat-list>
+            <mat-grid-tile [colspan]="6" [rowspan]="2" *ngFor="let proyect of proyects">
+              <mat-list-item [lines]="5">
 
-          <mat-list class="example-list-wrapping">
-            <mat-list-item lines="5">
-              <span matListItemTitle>{{proyect.name}}</span>
-              <span>{{proyect.description}}</span>
-              <br>
-              <span>{{proyect.period}}</span>
-              <br>
-              <br>
+                <span matListItemTitle>{{proyect.name}}</span>
+                <br>
+                <span>{{proyect.description}}</span>
+                <br>
+                <span>{{proyect.period}}</span>
+                <br>
+                <br>
 
-              <div class="example-button-container">
-                <button mat-mini-fab color="accent" matTooltip="EDITAR">
-                  <mat-icon>edit</mat-icon>
-                </button>
-                <button mat-mini-fab color="warn" matTooltip="ELIMINAR">
-                  <mat-icon>delete</mat-icon>
-                </button>
-              </div>
-            </mat-list-item>
+                <div class="buttons" *ngIf="editMode">
+                  <button class="button" mat-mini-fab color="accent" matTooltip="EDITAR" (click)="editProyect()">
+                    <mat-icon>edit</mat-icon>
+                  </button>
+                  <button class="button" mat-mini-fab color="warn" matTooltip="ELIMINAR" (click)="delete()">
+                    <mat-icon>delete</mat-icon>
+                  </button>
+                </div>
+                <hr>
+              </mat-list-item>
 
+
+            </mat-grid-tile>
           </mat-list>
-
         </mat-grid-list>
-
       </mat-card-content>
 
     </div>

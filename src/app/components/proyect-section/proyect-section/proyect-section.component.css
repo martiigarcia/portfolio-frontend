@@ -23,3 +23,13 @@
   color: #333333;
   height: 500px;
 }
+
+.div{
+  text-align: initial;
+}
+.buttons{
+  text-align: right;
+}
+.button{
+  box-shadow: unset;
+}

@@ -11,7 +11,8 @@ import {AcademicExperience} from "../../../domain/AcademicExperience";
 })
 export class EducationSectionComponent {
 
-
+  logged: boolean = true;
+  editMode: boolean = false;
   experiences: AcademicExperience[] = [];
 
   constructor(public router: Router,
@@ -27,6 +28,18 @@ export class EducationSectionComponent {
       // console.log(experience)
       this.experiences = experience;
     })
+  }
+  edit(){
+    this.editMode=!this.editMode;
+  }
+  add(){
+
+  }
+  delete(){
+
+  }
+  editExperience(){
+
   }
 
 
