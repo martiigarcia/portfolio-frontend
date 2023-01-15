@@ -30,6 +30,7 @@
   /*width: 200px;*/
   /*height: 200px;*/
   margin: 0 auto;
+  z-index: 9999;
 }
 .example-header-image:hover {
   transform: scale(3); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
@@ -45,4 +46,7 @@
 .div-header-titles{
   padding: 10px 0 0 5%;
   text-align: center;
+}
+.info-input{
+  width: 800px;
 }

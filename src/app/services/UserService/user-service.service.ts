@@ -34,6 +34,27 @@ export class UserServiceService {
       ));
   }
 
+  updateMyData(user: User): Observable<any> {
+    let pathconcat = this.resourceUrl + 'user/update/' + user.id + "?name=" + user.name +
+      "&surname=" + user.surname + "&age=" + user.age + "&email=" + user.email + "&password=" + user.password + "&admin=" + user.admin;
+
+    return this.http.put<any>(pathconcat, {}).pipe(
+      catchError(error => {
+        return throwError("La informacion no se pudo actualizar correctamente.");
+      })
+    )
+  }
+  updateMyInformation(info: string, id:number): Observable<any> {
+    // let pathconcat = this.resourceUrl + 'user/update/' + user.id + "?name=" + user.name +
+    //   "&surname=" + user.surname + "&age=" + user.age + "&email=" + user.email + "&password=" + user.password + "&admin=" + user.admin;
+
+    return this.http.put<any>(this.resourceUrl + 'user/updateInformation/'+id, info).pipe(
+      catchError(error => {
+        return throwError("La informacion no se pudo actualizar correctamente.");
+      })
+    )
+  }
+
   findWorkExperienceByUser(id: number): Observable<any> {
     return this.http.get<WorkExperience>(this.resourceUrl + "workExperience/byUser/" + id)
       .pipe(map(experiences =>
@@ -106,6 +127,7 @@ export class UserServiceService {
   private createAcademicExperience(information: any): AcademicExperience {
     return new AcademicExperience(information.id, information.title, information.place, information.period, information.type, information.user)
   }
+
   private createUserList(information: any): User[] {
     return information.users.map((user: any) => this.createUser(user));
   }

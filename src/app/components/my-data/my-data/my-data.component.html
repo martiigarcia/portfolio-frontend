@@ -1,18 +1,26 @@
-<div class="card">
+<div class="card" [formGroup]="formUser">
   <mat-card>
     <mat-card-title-group>
       <div class="div-header-titles">
-      <mat-card-header>
-        <div mat-card-avatar class="example-header-image"></div>
-        <div class="div-header">
-          <mat-card-title>Mis datos</mat-card-title>
-          <mat-card-subtitle>{{user.information}}</mat-card-subtitle>
-        </div>
-      </mat-card-header>
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image"></div>
+          <div class="div-header">
+            <mat-card-title>Mis datos</mat-card-title>
+            <mat-card-subtitle *ngIf="!editMode">{{user.information}}</mat-card-subtitle>
+            <mat-form-field appearance="fill" class="info-input" *ngIf="editMode">
+              <mat-label>Mi informacion</mat-label>
+              <textarea matInput formControlName="information"></textarea>
+            </mat-form-field>
+          </div>
+        </mat-card-header>
       </div>
       <div class="div-header-option">
         <mat-card-actions align="end">
-          <button mat-button (click)="edit()" matTooltip="{{editMode? 'CERRAR EDICION ':'EDITAR'}}">
+          <button mat-button (click)="save()" matTooltip="GUARDAR CAMBIOS REALIZADOS" *ngIf="editMode">
+            <mat-icon>save</mat-icon>
+            GUARDAR
+          </button>
+          <button mat-button (click)="edit()" matTooltip="{{editMode? 'CANCELAR Y CERRAR EDICION ':'EDITAR'}}">
             <mat-icon>{{editMode ? "close" : "edit"}}</mat-icon>
             {{editMode ? "" : "EDITAR"}}
           </button>
@@ -34,7 +42,12 @@
               </mat-card-title>
             </mat-grid-tile>
             <mat-grid-tile [colspan]="2" [rowspan]="1">
-              <mat-card-subtitle>{{user.name}}</mat-card-subtitle>
+              <mat-card-subtitle *ngIf="!editMode">{{user.name}}</mat-card-subtitle>
+              <mat-form-field appearance="outline" *ngIf="editMode">
+                <mat-label>Nombre</mat-label>
+                <input formControlName="name" matInput type="text"/>
+              </mat-form-field>
+
             </mat-grid-tile>
             <mat-grid-tile [colspan]="3" [rowspan]="1">
               <div class="vl"></div>
@@ -43,7 +56,11 @@
               <mat-card-title>Apellido:</mat-card-title>
             </mat-grid-tile>
             <mat-grid-tile [colspan]="2" [rowspan]="1">
-              <mat-card-subtitle>{{user.surname}}</mat-card-subtitle>
+              <mat-card-subtitle *ngIf="!editMode">{{user.surname}}</mat-card-subtitle>
+              <mat-form-field appearance="outline" *ngIf="editMode">
+                <mat-label>Apellido</mat-label>
+                <input matInput formControlName="surname" type="text"/>
+              </mat-form-field>
             </mat-grid-tile>
 
           </mat-grid-list>
@@ -55,7 +72,11 @@
               <mat-card-title>Email:</mat-card-title>
             </mat-grid-tile>
             <mat-grid-tile [colspan]="2" [rowspan]="1">
-              <mat-card-subtitle>{{user.email}}</mat-card-subtitle>
+              <mat-card-subtitle *ngIf="!editMode">{{user.email}}</mat-card-subtitle>
+              <mat-form-field appearance="outline" *ngIf="editMode">
+                <mat-label>Email</mat-label>
+                <input matInput formControlName="email" type="email"/>
+              </mat-form-field>
             </mat-grid-tile>
             <mat-grid-tile [colspan]="3" [rowspan]="1">
               <div class="vl"></div>
@@ -64,7 +85,12 @@
               <mat-card-title>Años:</mat-card-title>
             </mat-grid-tile>
             <mat-grid-tile [colspan]="2" [rowspan]="1">
-              <mat-card-subtitle>{{user.age}}</mat-card-subtitle>
+              <mat-card-subtitle *ngIf="!editMode">{{user.age}}</mat-card-subtitle>
+              <mat-form-field appearance="outline" *ngIf="editMode">
+                <mat-label>Años</mat-label>
+                <input matInput formControlName="age" type="number"/>
+              </mat-form-field>
+
             </mat-grid-tile>
 
           </mat-grid-list>
