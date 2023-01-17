@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {environment} from "../../environments/environment";
 import {catchError, map, Observable, tap, throwError} from "rxjs";
 import {User} from "../../domain/User";
@@ -17,6 +17,9 @@ export class UserServiceService {
   constructor(private http: HttpClient) {
   }
 
+  //SERVICIO:
+
+  //User:
   findAll(): Observable<User[]> {
     return this.http.get<User[]>(this.resourceUrl + "user/list")
       .pipe(map(resp =>
@@ -44,17 +47,19 @@ export class UserServiceService {
       })
     )
   }
-  updateMyInformation(info: string, id:number): Observable<any> {
+
+  updateMyInformation(info: string, id: number): Observable<any> {
     // let pathconcat = this.resourceUrl + 'user/update/' + user.id + "?name=" + user.name +
     //   "&surname=" + user.surname + "&age=" + user.age + "&email=" + user.email + "&password=" + user.password + "&admin=" + user.admin;
 
-    return this.http.put<any>(this.resourceUrl + 'user/updateInformation/'+id, info).pipe(
+    return this.http.put<any>(this.resourceUrl + 'user/updateInformation/' + id, info).pipe(
       catchError(error => {
         return throwError("La informacion no se pudo actualizar correctamente.");
       })
     )
   }
 
+  //Work Experience:
   findWorkExperienceByUser(id: number): Observable<any> {
     return this.http.get<WorkExperience>(this.resourceUrl + "workExperience/byUser/" + id)
       .pipe(map(experiences =>
@@ -64,6 +69,47 @@ export class UserServiceService {
       ));
   }
 
+  saveWorkExperience(experience: WorkExperience): Observable<any> {
+    const headers = new HttpHeaders({'Content-Type': 'application/json'});
+    const options = {headers: headers};
+    const body = {
+      "description": experience.description,
+      "title": experience.title,
+      "period": experience.period,
+      "place": experience.place,
+      "user": {
+        "id": experience.user.id
+      }
+    }
+
+    return this.http.post<WorkExperience>(this.resourceUrl + "workExperience/save", body, options)
+      .pipe(catchError(error => {
+          return throwError("La informacion no se pudo registrar correctamente.");
+        })
+      );
+  }
+
+  updateWorkExperience(experience: WorkExperience): Observable<any> {
+    let pathconcat = this.resourceUrl + 'workExperience/update/' + experience.id + "?title=" + experience.title +
+      "&description=" + experience.description + "&period=" + experience.period + "&place=" + experience.place;
+
+    return this.http.put<any>(pathconcat, {}).pipe(
+      catchError(error => {
+        return throwError("La informacion no se pudo actualizar correctamente.");
+      })
+    )
+  }
+
+  deleteWorkExperience(id: number): Observable<any> {
+    return this.http.delete<any>(this.resourceUrl + "workExperience/delete/" + id).pipe(
+      catchError(error => {
+        return throwError("La informacion no se pudo actualizar correctamente.");
+      })
+    )
+  }
+
+
+  //Proyects:
   findProyectsByUser(id: number): Observable<any> {
     return this.http.get<Proyect>(this.resourceUrl + "proyect/byUser/" + id)
       .pipe(map(resp =>
@@ -73,6 +119,8 @@ export class UserServiceService {
       ));
   }
 
+
+  //Skills:
   findSkillsByUser(id: number): Observable<any> {
     return this.http.get<User>(this.resourceUrl + "skill/byUser/" + id)
       .pipe(map(resp =>
@@ -82,6 +130,8 @@ export class UserServiceService {
       ));
   }
 
+
+  //Academic Experience:
   findAcademicExperienceByUser(id: number): Observable<any> {
     return this.http.get<AcademicExperience>(this.resourceUrl + "academicExperience/byUser/" + id)
       .pipe(map(experiences =>
@@ -90,6 +140,9 @@ export class UserServiceService {
         // this.createUser(this.createUserObject(user))
       ));
   }
+
+
+
 
   //CREADORES:
   private createSkillList(information: any): Skill[] {
