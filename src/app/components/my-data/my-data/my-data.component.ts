@@ -1,5 +1,5 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import {UserServiceService} from "../../../services/UserService/user-service.service";
+import {ServiceService} from "../../../services/Service/service.service";
 import {Router} from "@angular/router";
 import {User} from "../../../domain/User";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
@@ -30,7 +30,7 @@ export class MyDataComponent implements OnInit {
   });
 
   constructor(public router: Router, public fb: FormBuilder, private snackBar: MatSnackBar,
-              private userServiceService: UserServiceService) {
+              private service: ServiceService) {
   }
 
   ngOnInit(): void {
@@ -39,7 +39,7 @@ export class MyDataComponent implements OnInit {
 
 
   findOne() {
-    this.userServiceService.findOne(1).subscribe(user => {
+    this.service.findOne(1).subscribe(user => {
       this.buildForm(user)
       this.user = user;
     })
@@ -79,12 +79,12 @@ export class MyDataComponent implements OnInit {
       this.formUser.get(["admin"])?.value,
       this.formUser.get(["information"])?.value);
 
-    this.userServiceService.updateMyData(user).subscribe(p => {
+    this.service.updateMyData(user).subscribe(p => {
 
         if (user.information === this.user.information) {
           this.snackBar.open("El usuario se actualizó correctamente.", "Éxito", {duration: 2000});
         } else {
-          this.userServiceService.updateMyInformation(user.information, user.id).subscribe(p => {
+          this.service.updateMyInformation(user.information, user.id).subscribe(p => {
             this.snackBar.open("La information se actualizó correctamente.", "Éxito", {duration: 2000});
             this.ngOnInit();
           })

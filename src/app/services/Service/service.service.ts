@@ -11,7 +11,7 @@ import {AcademicExperience} from "../../domain/AcademicExperience";
 @Injectable({
   providedIn: 'root'
 })
-export class UserServiceService {
+export class ServiceService {
   private resourceUrl: string = environment.backendUrl;
 
   constructor(private http: HttpClient) {
@@ -119,6 +119,44 @@ export class UserServiceService {
       ));
   }
 
+  saveProyect(proyect: Proyect): Observable<any> {
+    const headers = new HttpHeaders({'Content-Type': 'application/json'});
+    const options = {headers: headers};
+    const body = {
+      "description": proyect.description,
+      "name": proyect.name,
+      "period": proyect.period,
+      "user": {
+        "id": proyect.user.id
+      }
+    }
+
+    return this.http.post<Proyect>(this.resourceUrl + "proyect/save", body, options)
+      .pipe(catchError(error => {
+          return throwError("La informacion no se pudo registrar correctamente.");
+        })
+      );
+  }
+
+  updateProyect(proyect: Proyect): Observable<any> {
+    let pathconcat = this.resourceUrl + 'proyect/update/' + proyect.id + "?name=" + proyect.name +
+      "&description=" + proyect.description + "&period=" + proyect.period ;
+
+    return this.http.put<any>(pathconcat, {}).pipe(
+      catchError(error => {
+        return throwError("La informacion no se pudo actualizar correctamente.");
+      })
+    )
+  }
+
+  deleteProyect(id: number): Observable<any> {
+    return this.http.delete<any>(this.resourceUrl + "proyect/delete/" + id).pipe(
+      catchError(error => {
+        return throwError("La informacion no se pudo actualizar correctamente.");
+      })
+    )
+  }
+
 
   //Skills:
   findSkillsByUser(id: number): Observable<any> {
@@ -128,6 +166,43 @@ export class UserServiceService {
         // console.log(this.createProyectList(resp))
 
       ));
+  }
+
+  saveSkill(skill: Skill): Observable<any> {
+    const headers = new HttpHeaders({'Content-Type': 'application/json'});
+    const options = {headers: headers};
+    const body = {
+      "percentage": skill.percentage,
+      "title": skill.title,
+      "user": {
+        "id": skill.user.id
+      }
+    }
+
+    return this.http.post<Skill>(this.resourceUrl + "skill/save", body, options)
+      .pipe(catchError(error => {
+          return throwError("La informacion no se pudo registrar correctamente.");
+        })
+      );
+  }
+
+  updateSkill(skill: Skill): Observable<any> {
+    let pathconcat = this.resourceUrl + 'skill/update/' + skill.id + "?title=" + skill.title +
+      "&percentage=" + skill.percentage ;
+
+    return this.http.put<any>(pathconcat, {}).pipe(
+      catchError(error => {
+        return throwError("La informacion no se pudo actualizar correctamente.");
+      })
+    )
+  }
+
+  deleteSkill(id: number): Observable<any> {
+    return this.http.delete<any>(this.resourceUrl + "skill/delete/" + id).pipe(
+      catchError(error => {
+        return throwError("La informacion no se pudo actualizar correctamente.");
+      })
+    )
   }
 
 
@@ -141,7 +216,44 @@ export class UserServiceService {
       ));
   }
 
+  saveAcademicExperience(experience: AcademicExperience): Observable<any> {
+    const headers = new HttpHeaders({'Content-Type': 'application/json'});
+    const options = {headers: headers};
+    const body = {
+      "place": experience.place,
+      "title": experience.title,
+      "period": experience.period,
+      "type": experience.type,
+      "user": {
+        "id": experience.user.id
+      }
+    }
 
+    return this.http.post<AcademicExperience>(this.resourceUrl + "academicExperience/save", body, options)
+      .pipe(catchError(error => {
+          return throwError("La informacion no se pudo registrar correctamente.");
+        })
+      );
+  }
+
+  updateAcademicExperience(experience: AcademicExperience): Observable<any> {
+    let pathconcat = this.resourceUrl + 'academicExperience/update/' + experience.id + "?title=" + experience.title +
+      "&place=" + experience.place + "&period=" + experience.period + "&type=" + experience.type;
+
+    return this.http.put<any>(pathconcat, {}).pipe(
+      catchError(error => {
+        return throwError("La informacion no se pudo actualizar correctamente.");
+      })
+    )
+  }
+
+  deleteAcademicExperience(id: number): Observable<any> {
+    return this.http.delete<any>(this.resourceUrl + "academicExperience/delete/" + id).pipe(
+      catchError(error => {
+        return throwError("La informacion no se pudo actualizar correctamente.");
+      })
+    )
+  }
 
 
   //CREADORES:

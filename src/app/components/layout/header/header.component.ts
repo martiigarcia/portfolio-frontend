@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {Router} from "@angular/router";
 
 @Component({
@@ -11,23 +11,23 @@ export class HeaderComponent {
   logged = false;
   loading = false;
 
+  constructor(public router: Router) {
+  }
+
   ngOnInit(): void {
     this.loading = false;
   }
 
-  constructor(public router: Router) {
-  }
-
-  login(){
+  login() {
     this.logged = !this.logged;
-    console.log(this.logged)
+    // console.log(this.logged)
     this.loading = !this.loading;
     this.router.navigate(['login']);
   }
 
-  logout(){
+  logout() {
     this.logged = !this.logged;
-    console.log(this.logged)
+    // console.log(this.logged)
     this.loading = !this.loading;
     this.router.navigate(['login']);
   }

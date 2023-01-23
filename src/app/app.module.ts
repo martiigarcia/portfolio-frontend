@@ -17,7 +17,7 @@ import {SkillsModule} from "./components/skills/skills.module";
 import {ProyectSectionModule} from "./components/proyect-section/proyect-section.module";
 import {LoginModule} from "./components/login/login.module";
 import {ReactiveFormsModule} from "@angular/forms";
-import {DialogContentExampleDialog} from "./components/skills/skills/skills.component";
+import {ServiceService} from "./services/Service/service.service";
 
 @NgModule({
   declarations: [
@@ -45,7 +45,7 @@ import {DialogContentExampleDialog} from "./components/skills/skills/skills.comp
     ProyectSectionModule,
     LoginModule
   ],
-  providers: [],
+  providers: [ServiceService],
   exports: [],
   bootstrap: [AppComponent]
 })

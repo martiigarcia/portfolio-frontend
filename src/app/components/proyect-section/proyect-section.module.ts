@@ -3,12 +3,21 @@ import { CommonModule } from '@angular/common';
 
 import { ProyectSectionRoutingModule } from './proyect-section-routing.module';
 import {MaterialModule} from "../material/material.module";
-import { ProyectSectionComponent } from './proyect-section/proyect-section.component';
+import {
+  AddProyectDialog, DeleteProyectDialog,
+  ProyectSectionComponent,
+  UpdateProyctDialog
+} from './proyect-section/proyect-section.component';
+import {FormsModule} from "@angular/forms";
+import {ServiceService} from "../../services/Service/service.service";
 
 
 @NgModule({
   declarations: [
-    ProyectSectionComponent
+    ProyectSectionComponent,
+    AddProyectDialog,
+    UpdateProyctDialog,
+    DeleteProyectDialog
   ],
   exports: [
     ProyectSectionComponent
@@ -16,7 +25,10 @@ import { ProyectSectionComponent } from './proyect-section/proyect-section.compo
   imports: [
     CommonModule,
     ProyectSectionRoutingModule,
-    MaterialModule
-  ]
+    MaterialModule,
+    FormsModule
+  ],
+  providers: [ServiceService],
+  entryComponents:[AddProyectDialog, UpdateProyctDialog, DeleteProyectDialog],
 })
 export class ProyectSectionModule { }

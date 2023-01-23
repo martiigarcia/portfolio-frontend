@@ -1,7 +1,7 @@
 import {Component, Inject, Input, OnInit} from '@angular/core';
 import {WorkExperience} from "../../../domain/WorkExperience";
 import {Router} from "@angular/router";
-import {UserServiceService} from "../../../services/UserService/user-service.service";
+import {ServiceService} from "../../../services/Service/service.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material/dialog";
@@ -28,7 +28,7 @@ export class ExperienceSectionComponent implements OnInit {
 
 
   constructor(public router: Router, public fb: FormBuilder, private snackBar: MatSnackBar, public dialog: MatDialog,
-              private userServiceService: UserServiceService) {
+              private service: ServiceService) {
   }
 
   ngOnInit(): void {
@@ -36,7 +36,7 @@ export class ExperienceSectionComponent implements OnInit {
   }
 
   getExperiencesByUser(id: number): void {
-    this.userServiceService.findWorkExperienceByUser(id).subscribe(experience => {
+    this.service.findWorkExperienceByUser(id).subscribe(experience => {
       this.experiences = experience;
     })
   }
@@ -58,7 +58,7 @@ export class ExperienceSectionComponent implements OnInit {
       data:
         {
           id: experience.id,
-          "title": experience.title
+          title: experience.title
         }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -132,13 +132,13 @@ export class AddWorkExperienceDialog implements OnInit {
   user: any;
 
   constructor(public router: Router, public fb: FormBuilder, private snackBar: MatSnackBar, public dialog: MatDialog,
-              private userServiceService: UserServiceService,
+              private service: ServiceService,
               public dialogRef: MatDialogRef<AddWorkExperienceDialog>
   ) {
   }
 
   ngOnInit(): void {
-    this.userServiceService.findOne(1).subscribe(p => {
+    this.service.findOne(1).subscribe(p => {
       this.user = p;
     });
   }
@@ -156,7 +156,7 @@ export class AddWorkExperienceDialog implements OnInit {
       this.formExperience.get(["place"])?.value,
       this.user
     );
-    this.userServiceService.saveWorkExperience(experience).subscribe(p => {
+    this.service.saveWorkExperience(experience).subscribe(p => {
         this.snackBar.open("La experiencia se registro correctamente.", "Éxito", {duration: 2000});
       },
       error => {
@@ -171,7 +171,7 @@ export class AddWorkExperienceDialog implements OnInit {
   selector: 'update-work-experience-dialog',
   // templateUrl: 'update-work-experience-dialog.html',
   template: `
-    <h1 mat-dialog-title>Registrar experiencia laboral</h1>
+    <h1 mat-dialog-title>Actualizar experiencia laboral</h1>
     <div mat-dialog-content style="width: 500px">
       <mat-form-field appearance="fill" style="width: 100%">
         <mat-label>Nombre</mat-label>
@@ -202,7 +202,7 @@ export class AddWorkExperienceDialog implements OnInit {
 export class UpdateWorkExperienceDialog {
   constructor(
     public router: Router, public fb: FormBuilder, private snackBar: MatSnackBar, public dialog: MatDialog,
-    private userServiceService: UserServiceService,
+    private service: ServiceService,
     public dialogRef: MatDialogRef<UpdateWorkExperienceDialog>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
   ) {
@@ -221,7 +221,7 @@ export class UpdateWorkExperienceDialog {
       this.data.place,
       this.data.user
     );
-    this.userServiceService.updateWorkExperience(experience).subscribe(p => {
+    this.service.updateWorkExperience(experience).subscribe(p => {
       this.snackBar.open("La experiencia se actualizo correctamente.", "Éxito", {duration: 2000});
     })
     this.dialogRef.close();
@@ -243,7 +243,7 @@ export class UpdateWorkExperienceDialog {
   `,
 })
 export class DeleteWorkExperienceDialog {
-  constructor(private userServiceService: UserServiceService, private snackBar: MatSnackBar,
+  constructor(private service: ServiceService, private snackBar: MatSnackBar,
               public dialogRef: MatDialogRef<DeleteWorkExperienceDialog>,
               @Inject(MAT_DIALOG_DATA) public data: DialogData) {
   }
@@ -253,7 +253,7 @@ export class DeleteWorkExperienceDialog {
   }
 
   delete(): void {
-    this.userServiceService.deleteWorkExperience(this.data.id).subscribe(p => {
+    this.service.deleteWorkExperience(this.data.id).subscribe(p => {
       this.snackBar.open("La experiencia se elimino correctamente.", "Éxito", {duration: 2000});
     })
     this.dialogRef.close();

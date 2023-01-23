@@ -35,10 +35,10 @@
                 <br>
 
                 <div class="buttons" *ngIf="editMode">
-                  <button class="button" mat-mini-fab color="accent" matTooltip="EDITAR" (click)="editProyect()">
+                  <button class="button" mat-mini-fab color="accent" matTooltip="EDITAR" (click)="editProyect(proyect)">
                     <mat-icon>edit</mat-icon>
                   </button>
-                  <button class="button" mat-mini-fab color="warn" matTooltip="ELIMINAR" (click)="delete()">
+                  <button class="button" mat-mini-fab color="warn" matTooltip="ELIMINAR" (click)="delete(proyect)">
                     <mat-icon>delete</mat-icon>
                   </button>
                 </div>

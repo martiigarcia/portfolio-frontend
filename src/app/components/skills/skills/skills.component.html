@@ -30,8 +30,8 @@
 
                 <div class="title">
                   <span matListItemTitle>{{skill.title}}
-                    <button mat-button (click)="openDialog()" matTooltip="EDITAR" *ngIf="editMode"><mat-icon>edit</mat-icon></button>
-                    <button mat-button (click)="deleteSkill()" matTooltip="ELIMINAR" *ngIf="editMode"><mat-icon>delete</mat-icon></button>
+                    <button mat-button (click)="editSkill(skill)" matTooltip="EDITAR" *ngIf="editMode"><mat-icon>edit</mat-icon></button>
+                    <button mat-button (click)="deleteSkill(skill)" matTooltip="ELIMINAR" *ngIf="editMode"><mat-icon>delete</mat-icon></button>
                   </span>
 
                   <div class="loader-background">

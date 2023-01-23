@@ -3,13 +3,21 @@ import { CommonModule } from '@angular/common';
 
 import { EducationSectionRoutingModule } from './education-section-routing.module';
 import {MaterialModule} from "../material/material.module";
-import {SeparatorSectionModule} from "../separator-section/separator-section.module";
-import { EducationSectionComponent } from './education-section/education-section.component';
+import {
+  AddAcademicExperienceDialog, DeleteAcademicExperienceDialog,
+  EducationSectionComponent,
+  UpdateAcademicExperienceDialog
+} from './education-section/education-section.component';
+import {FormsModule} from "@angular/forms";
+import {ServiceService} from "../../services/Service/service.service";
 
 
 @NgModule({
   declarations: [
-    EducationSectionComponent
+    EducationSectionComponent,
+    AddAcademicExperienceDialog,
+    UpdateAcademicExperienceDialog,
+    DeleteAcademicExperienceDialog
   ],
   exports: [
     EducationSectionComponent
@@ -17,7 +25,10 @@ import { EducationSectionComponent } from './education-section/education-section
   imports: [
     CommonModule,
     EducationSectionRoutingModule,
-    MaterialModule
-  ]
+    MaterialModule,
+    FormsModule
+  ],
+  providers: [ServiceService],
+  entryComponents:[AddAcademicExperienceDialog, UpdateAcademicExperienceDialog, DeleteAcademicExperienceDialog]
 })
 export class EducationSectionModule { }

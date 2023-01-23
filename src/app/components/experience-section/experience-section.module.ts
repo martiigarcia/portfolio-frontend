@@ -9,8 +9,8 @@ import {
 } from './experience-section/experience-section.component';
 import {MaterialModule} from "../material/material.module";
 import {SeparatorSectionModule} from "../separator-section/separator-section.module";
-import {AddSkillDialog, DialogContentExampleDialog} from "../skills/skills/skills.component";
 import {FormsModule} from "@angular/forms";
+import {ServiceService} from "../../services/Service/service.service";
 
 
 @NgModule({
@@ -29,6 +29,7 @@ import {FormsModule} from "@angular/forms";
     MaterialModule,
     FormsModule
   ],
+  providers: [ServiceService],
   entryComponents:[AddWorkExperienceDialog, UpdateWorkExperienceDialog, DeleteWorkExperienceDialog]
 })
 export class ExperienceSectionModule { }

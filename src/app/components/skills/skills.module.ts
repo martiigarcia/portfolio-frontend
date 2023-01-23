@@ -1,17 +1,23 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 
-import { SkillsRoutingModule } from './skills-routing.module';
+import {SkillsRoutingModule} from './skills-routing.module';
 import {MaterialModule} from "../material/material.module";
-import {AddSkillDialog, DialogContentExampleDialog, SkillsComponent} from './skills/skills.component';
+import {
+  AddSkillDialog,
+  DeleteSkillDialog,
+  SkillsComponent, UpdateSkillDialog
+} from './skills/skills.component';
 import {FormsModule} from "@angular/forms";
+import {ServiceService} from "../../services/Service/service.service";
 
 
 @NgModule({
   declarations: [
     SkillsComponent,
-    DialogContentExampleDialog,
     AddSkillDialog,
+    DeleteSkillDialog,
+    UpdateSkillDialog
   ],
   exports: [
     SkillsComponent
@@ -22,6 +28,8 @@ import {FormsModule} from "@angular/forms";
     MaterialModule,
     FormsModule
   ],
-  entryComponents:[DialogContentExampleDialog, AddSkillDialog]
+  providers: [ServiceService],
+  entryComponents: [AddSkillDialog, UpdateSkillDialog, DeleteSkillDialog]
 })
-export class SkillsModule { }
+export class SkillsModule {
+}
