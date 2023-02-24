@@ -7,6 +7,7 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {User} from "../../../domain/User";
 import {WorkExperience} from "../../../domain/WorkExperience";
+import {AngularFireAuth} from "@angular/fire/compat/auth";
 
 export interface DialogData {
   id: number;
@@ -27,11 +28,22 @@ export class ProyectSectionComponent {
   logged: boolean = true;
   editMode: boolean = false;
 
-  constructor(public router: Router, public fb: FormBuilder, private snackBar: MatSnackBar, public dialog: MatDialog,
+  constructor(public router: Router,
+              public fb: FormBuilder,
+              private snackBar: MatSnackBar,
+              public dialog: MatDialog,
+              private afAuth: AngularFireAuth,
               private service: ServiceService) {
   }
 
   ngOnInit(): void {
+    this.afAuth.onAuthStateChanged((user) => {
+      if (user) {
+        this.logged=true;
+      } else {
+        this.logged=false;
+      }
+    }).then(r => console.log(r));
     this.findProyectsByUser(1);
   }
 

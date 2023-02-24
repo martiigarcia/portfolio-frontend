@@ -8,6 +8,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {User} from "../../../domain/User";
+import {AngularFireAuth} from "@angular/fire/compat/auth";
 
 export interface DialogData {
   id: number,
@@ -30,12 +31,22 @@ export class SkillsComponent implements OnInit {
 
   skills: Skill[] = [];
 
-  constructor(public fb: FormBuilder, public router: Router, public dialog: MatDialog,
+  constructor(public fb: FormBuilder,
+              public router: Router,
+              public dialog: MatDialog,
+              private afAuth: AngularFireAuth,
               private service: ServiceService) {
   }
 
 
   ngOnInit(): void {
+    this.afAuth.onAuthStateChanged((user) => {
+      if (user) {
+        this.logged = true;
+      } else {
+        this.logged = false;
+      }
+    }).then(r => console.log(r));
     this.findSkillsByUser(1);
     console.log(this.editMode)
     // console.log(this.skills)

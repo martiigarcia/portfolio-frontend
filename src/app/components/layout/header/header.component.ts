@@ -1,5 +1,8 @@
 import {Component} from '@angular/core';
 import {Router} from "@angular/router";
+import {AuthService} from "../../../services/Auth/auth.service";
+import {AngularFireAuth} from "@angular/fire/compat/auth";
+
 
 @Component({
   selector: 'app-header',
@@ -11,25 +14,34 @@ export class HeaderComponent {
   logged = false;
   loading = false;
 
-  constructor(public router: Router) {
+  constructor(public authService: AuthService,
+              private afAuth: AngularFireAuth,
+              public router: Router) {
   }
 
   ngOnInit(): void {
     this.loading = false;
+    this.afAuth.onAuthStateChanged((user) => {
+      if (user) {
+        this.logged=true;
+      } else {
+        this.logged=false;
+      }
+    }).then(r => console.log(r));
   }
 
   login() {
     this.logged = !this.logged;
-    // console.log(this.logged)
     this.loading = !this.loading;
     this.router.navigate(['login']);
   }
 
   logout() {
-    this.logged = !this.logged;
-    // console.log(this.logged)
-    this.loading = !this.loading;
-    this.router.navigate(['login']);
+    this.authService.logout().then(resp =>{
+      this.logged = !this.logged;
+      this.loading = !this.loading;
+      this.router.navigate(['login']);
+    });
   }
 
 }

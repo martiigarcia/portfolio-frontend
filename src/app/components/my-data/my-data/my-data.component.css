@@ -9,7 +9,10 @@
   margin-left: 5%;
   margin-right: 5%;
 }
-
+.title{
+  text-align: center;
+  justify-content: center;
+}
 .p{
   font-size: 17px;
 }

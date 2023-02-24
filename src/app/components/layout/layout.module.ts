@@ -5,6 +5,8 @@ import { LayoutRoutingModule } from './layout-routing.module';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import {MaterialModule} from "../material/material.module";
+import {AuthService} from "../../services/Auth/auth.service";
+
 
 
 @NgModule({
@@ -20,6 +22,7 @@ import {MaterialModule} from "../material/material.module";
     CommonModule,
     LayoutRoutingModule,
     MaterialModule
-  ]
+  ],
+  providers: [AuthService],
 })
 export class LayoutModule { }

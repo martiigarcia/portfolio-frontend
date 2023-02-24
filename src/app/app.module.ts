@@ -18,6 +18,11 @@ import {ProyectSectionModule} from "./components/proyect-section/proyect-section
 import {LoginModule} from "./components/login/login.module";
 import {ReactiveFormsModule} from "@angular/forms";
 import {ServiceService} from "./services/Service/service.service";
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideAuth,getAuth } from '@angular/fire/auth';
+import {AuthService} from "./services/Auth/auth.service";
+import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 
 @NgModule({
   declarations: [
@@ -43,9 +48,13 @@ import {ServiceService} from "./services/Service/service.service";
     EducationSectionModule,
     SkillsModule,
     ProyectSectionModule,
-    LoginModule
+    LoginModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideAuth(() => getAuth())
   ],
-  providers: [ServiceService],
+  providers: [ServiceService, AuthService,
+    { provide: FIREBASE_OPTIONS, useValue: environment.firebase }
+  ],
   exports: [],
   bootstrap: [AppComponent]
 })

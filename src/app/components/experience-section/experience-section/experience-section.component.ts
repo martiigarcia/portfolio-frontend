@@ -6,6 +6,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {User} from "../../../domain/User";
+import {AngularFireAuth} from "@angular/fire/compat/auth";
 
 export interface DialogData {
   id: number;
@@ -22,16 +23,27 @@ export interface DialogData {
   styleUrls: ['./experience-section.component.css']
 })
 export class ExperienceSectionComponent implements OnInit {
-  logged: boolean = true;
+  logged: boolean | undefined;
   editMode: boolean = false;
   experiences: WorkExperience[] = [];
 
 
-  constructor(public router: Router, public fb: FormBuilder, private snackBar: MatSnackBar, public dialog: MatDialog,
+  constructor(public router: Router,
+              public fb: FormBuilder,
+              private snackBar: MatSnackBar,
+              public dialog: MatDialog,
+              private afAuth: AngularFireAuth,
               private service: ServiceService) {
   }
 
   ngOnInit(): void {
+    this.afAuth.onAuthStateChanged((user) => {
+      if (user) {
+        this.logged = true;
+      } else {
+        this.logged = false;
+      }
+    }).then(r => console.log(r));
     this.getExperiencesByUser(1);
   }
 

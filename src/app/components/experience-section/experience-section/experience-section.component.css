@@ -10,7 +10,8 @@
   margin-right: 5%;
 }
 .title{
-  text-align: initial;
+  text-align: center;
+  justify-content: center;
 }
 .p{
   font-size: 17px;

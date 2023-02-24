@@ -4,6 +4,7 @@ import {Router} from "@angular/router";
 import {User} from "../../../domain/User";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {AngularFireAuth} from "@angular/fire/compat/auth";
 
 @Component({
   selector: 'app-my-data',
@@ -14,7 +15,7 @@ export class MyDataComponent implements OnInit {
 
   user: any;
   loading: boolean = false;
-  logged: boolean = true;
+  logged: boolean | undefined ;
   editMode: boolean = false;
 
   @Input()
@@ -29,11 +30,21 @@ export class MyDataComponent implements OnInit {
     admin: ['', [Validators.required]]
   });
 
-  constructor(public router: Router, public fb: FormBuilder, private snackBar: MatSnackBar,
+  constructor(public router: Router,
+              public fb: FormBuilder,
+              private snackBar: MatSnackBar,
+              private afAuth: AngularFireAuth,
               private service: ServiceService) {
   }
 
   ngOnInit(): void {
+    this.afAuth.onAuthStateChanged((user) => {
+      if (user) {
+        this.logged=true;
+      } else {
+        this.logged=false;
+      }
+    }).then(r => console.log(r));
     this.findOne();
   }
 

@@ -6,6 +6,7 @@ import {MaterialModule} from "../material/material.module";
 import { LoginComponent } from './login/login.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import {ServiceService} from "../../services/Service/service.service";
+import {AuthService} from "../../services/Auth/auth.service";
 
 
 @NgModule({
@@ -18,6 +19,6 @@ import {ServiceService} from "../../services/Service/service.service";
     MaterialModule,
     ReactiveFormsModule,
   ],
-  providers: [ServiceService],
+  providers: [ServiceService, AuthService],
 })
 export class LoginModule { }
