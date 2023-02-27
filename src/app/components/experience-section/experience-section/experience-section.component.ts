@@ -37,6 +37,7 @@ export class ExperienceSectionComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
     this.afAuth.onAuthStateChanged((user) => {
       if (user) {
         this.logged = true;
@@ -44,12 +45,15 @@ export class ExperienceSectionComponent implements OnInit {
         this.logged = false;
       }
     }).then(r => console.log(r));
+
     this.getExperiencesByUser(1);
+
   }
 
   getExperiencesByUser(id: number): void {
     this.service.findWorkExperienceByUser(id).subscribe(experience => {
       this.experiences = experience;
+
     })
   }
 
@@ -58,28 +62,26 @@ export class ExperienceSectionComponent implements OnInit {
   }
 
   add(): void {
-    const dialogRef = this.dialog.open(AddWorkExperienceDialog);
-
-    dialogRef.afterClosed().subscribe(result => {
+    this.dialog.open(AddWorkExperienceDialog)
+      .afterClosed().subscribe(result => {
       this.ngOnInit();
     });
   }
 
   delete(experience: WorkExperience): void {
-    const dialogRef = this.dialog.open(DeleteWorkExperienceDialog, {
+    this.dialog.open(DeleteWorkExperienceDialog, {
       data:
         {
           id: experience.id,
           title: experience.title
         }
-    });
-    dialogRef.afterClosed().subscribe(result => {
+    }).afterClosed().subscribe(result => {
       this.ngOnInit();
     });
   }
 
   editExperience(experience: WorkExperience): void {
-    const dialogRef = this.dialog.open(UpdateWorkExperienceDialog, {
+    this.dialog.open(UpdateWorkExperienceDialog, {
       data: {
         title: experience.title,
         description: experience.description,
@@ -88,9 +90,7 @@ export class ExperienceSectionComponent implements OnInit {
         user: experience.user,
         id: experience.id
       }
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
+    }).afterClosed().subscribe(result => {
       this.ngOnInit();
     });
   }
@@ -170,11 +170,11 @@ export class AddWorkExperienceDialog implements OnInit {
     );
     this.service.saveWorkExperience(experience).subscribe(p => {
         this.snackBar.open("La experiencia se registro correctamente.", "Éxito", {duration: 2000});
+        this.dialogRef.close();
       },
       error => {
         this.snackBar.open(error, "Error", {duration: 2000});
       });
-    this.dialogRef.close();
   }
 }
 
@@ -235,8 +235,8 @@ export class UpdateWorkExperienceDialog {
     );
     this.service.updateWorkExperience(experience).subscribe(p => {
       this.snackBar.open("La experiencia se actualizo correctamente.", "Éxito", {duration: 2000});
+      this.dialogRef.close();
     })
-    this.dialogRef.close();
   }
 }
 
@@ -267,7 +267,7 @@ export class DeleteWorkExperienceDialog {
   delete(): void {
     this.service.deleteWorkExperience(this.data.id).subscribe(p => {
       this.snackBar.open("La experiencia se elimino correctamente.", "Éxito", {duration: 2000});
+      this.dialogRef.close();
     })
-    this.dialogRef.close();
   }
 }

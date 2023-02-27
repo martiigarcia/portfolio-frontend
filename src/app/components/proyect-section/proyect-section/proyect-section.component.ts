@@ -39,9 +39,9 @@ export class ProyectSectionComponent {
   ngOnInit(): void {
     this.afAuth.onAuthStateChanged((user) => {
       if (user) {
-        this.logged=true;
+        this.logged = true;
       } else {
-        this.logged=false;
+        this.logged = false;
       }
     }).then(r => console.log(r));
     this.findProyectsByUser(1);
@@ -58,28 +58,25 @@ export class ProyectSectionComponent {
   }
 
   add(): void {
-    const dialogRef = this.dialog.open(AddProyectDialog);
-
-    dialogRef.afterClosed().subscribe(result => {
+    this.dialog.open(AddProyectDialog).afterClosed().subscribe(result => {
       this.ngOnInit();
     });
   }
 
   delete(proyect: Proyect): void {
-    const dialogRef = this.dialog.open(DeleteProyectDialog, {
+    this.dialog.open(DeleteProyectDialog, {
       data:
         {
           id: proyect.id,
           name: proyect.name
         }
-    });
-    dialogRef.afterClosed().subscribe(result => {
+    }).afterClosed().subscribe(result => {
       this.ngOnInit();
     });
   }
 
   editProyect(proyect: Proyect): void {
-    const dialogRef = this.dialog.open(UpdateProyctDialog, {
+    this.dialog.open(UpdateProyctDialog, {
       data: {
         name: proyect.name,
         description: proyect.description,
@@ -87,9 +84,7 @@ export class ProyectSectionComponent {
         user: proyect.user,
         id: proyect.id
       }
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
+    }).afterClosed().subscribe(result => {
       this.ngOnInit();
     });
   }
@@ -163,11 +158,11 @@ export class AddProyectDialog implements OnInit {
     );
     this.service.saveProyect(proyect).subscribe(p => {
         this.snackBar.open("La experiencia se registro correctamente.", "Éxito", {duration: 2000});
+        this.dialogRef.close();
       },
       error => {
         this.snackBar.open(error, "Error", {duration: 2000});
       });
-    this.dialogRef.close();
   }
 }
 
@@ -222,8 +217,8 @@ export class UpdateProyctDialog {
     );
     this.service.updateProyect(proyect).subscribe(p => {
       this.snackBar.open("El proyecto se actualizo correctamente.", "Éxito", {duration: 2000});
+      this.dialogRef.close();
     })
-    this.dialogRef.close();
   }
 }
 
@@ -254,7 +249,7 @@ export class DeleteProyectDialog {
   delete(): void {
     this.service.deleteProyect(this.data.id).subscribe(p => {
       this.snackBar.open("El proyecto se elimino correctamente.", "Éxito", {duration: 2000});
+      this.dialogRef.close();
     })
-    this.dialogRef.close();
   }
 }

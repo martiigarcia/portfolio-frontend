@@ -8,5 +8,5 @@ export const environment = {
     messagingSenderId: '488478432974',
   },
   production: true,
-
+  backendUrl: "http://localhost:8090/"
 };

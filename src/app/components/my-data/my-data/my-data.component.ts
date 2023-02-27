@@ -45,6 +45,7 @@ export class MyDataComponent implements OnInit {
         this.logged=false;
       }
     }).then(r => console.log(r));
+    // this.logged=true;
     this.findOne();
   }
 
@@ -100,8 +101,8 @@ export class MyDataComponent implements OnInit {
             this.ngOnInit();
           })
         }
-        this.ngOnInit();
         this.editMode = !this.editMode;
+        this.ngOnInit();
       },
       error => {
         this.snackBar.open(error, "Error", {duration: 2000});

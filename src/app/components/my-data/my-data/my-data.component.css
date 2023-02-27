@@ -11,7 +11,8 @@
 }
 .title{
   text-align: center;
-  justify-content: center;
+  justify-content: unset;
+  margin-right: 10px;
 }
 .p{
   font-size: 17px;
@@ -41,6 +42,8 @@
 .div-header{
   padding: 50px 0 0 20px;
   text-align: center;
+  justify-content: center;
+  margin-right: 10px;
 }
 .div-header-option{
   padding: 15px 5% 0 20px;
@@ -50,6 +53,15 @@
   padding: 10px 0 0 5%;
   text-align: center;
 }
-.info-input{
-  width: 800px;
+.card-title{
+  text-align: initial;
+  margin-left: 350px;
 }
+.infoo{
+  width: 900px;
+
+  /*margin-right: 20px;*/
+}
+.info-input{
+   width: 800px;
+ }

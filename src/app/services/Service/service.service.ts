@@ -1,12 +1,12 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {environment} from "../../environments/environment";
 import {catchError, map, Observable, tap, throwError} from "rxjs";
 import {User} from "../../domain/User";
 import {WorkExperience} from "../../domain/WorkExperience";
 import {Proyect} from "../../domain/Proyect";
 import {Skill} from "../../domain/Skill";
 import {AcademicExperience} from "../../domain/AcademicExperience";
+import {environment} from "../../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
@@ -140,7 +140,7 @@ export class ServiceService {
 
   updateProyect(proyect: Proyect): Observable<any> {
     let pathconcat = this.resourceUrl + 'proyect/update/' + proyect.id + "?name=" + proyect.name +
-      "&description=" + proyect.description + "&period=" + proyect.period ;
+      "&description=" + proyect.description + "&period=" + proyect.period;
 
     return this.http.put<any>(pathconcat, {}).pipe(
       catchError(error => {
@@ -188,7 +188,7 @@ export class ServiceService {
 
   updateSkill(skill: Skill): Observable<any> {
     let pathconcat = this.resourceUrl + 'skill/update/' + skill.id + "?title=" + skill.title +
-      "&percentage=" + skill.percentage ;
+      "&percentage=" + skill.percentage;
 
     return this.http.put<any>(pathconcat, {}).pipe(
       catchError(error => {

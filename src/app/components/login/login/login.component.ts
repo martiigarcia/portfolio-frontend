@@ -39,6 +39,7 @@ export class LoginComponent {
         }
       ).catch(error =>{
         console.log(error)
+      this.snackBar.open("El usuario o contraseña no coinciden", "Error", {duration: 2000});
     });
   }
   logInWithGoogle() {

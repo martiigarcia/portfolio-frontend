@@ -63,16 +63,13 @@ export class SkillsComponent implements OnInit {
   }
 
   add() {
-
-    const dialogRef = this.dialog.open(AddSkillDialog);
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+    this.dialog.open(AddSkillDialog).afterClosed().subscribe(result => {
+      this.ngOnInit()
     });
   }
 
   editSkill(skill: Skill) {
-    const dialogRef = this.dialog.open(UpdateSkillDialog, {
+    this.dialog.open(UpdateSkillDialog, {
         data: {
           id: skill.id,
           title: skill.title,
@@ -80,24 +77,20 @@ export class SkillsComponent implements OnInit {
           user: skill.user
         }
       }
-    );
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+    ).afterClosed().subscribe(result => {
+      this.ngOnInit()
     });
   }
 
   deleteSkill(skill: Skill) {
-    const dialogRef = this.dialog.open(DeleteSkillDialog, {
+    this.dialog.open(DeleteSkillDialog, {
         data: {
           id: skill.id,
           title: skill.title
         }
       }
-    );
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+    ).afterClosed().subscribe(result => {
+      this.ngOnInit()
     });
   }
 
@@ -160,8 +153,8 @@ export class UpdateSkillDialog {
     );
     this.service.updateSkill(skill).subscribe(p => {
       this.snackBar.open("La habilidad se actualizo correctamente.", "Éxito", {duration: 2000});
+      this.dialogRef.close();
     })
-    this.dialogRef.close();
   }
 }
 
@@ -170,7 +163,7 @@ export class UpdateSkillDialog {
   selector: 'add-skill-dialog',
   template: `
     <h1 mat-dialog-title>Crear habilidad</h1>
-    <div mat-dialog-content>
+    <div mat-dialog-content [formGroup]="formSkill">
       <mat-form-field appearance="fill">
         <mat-label>Habilidad</mat-label>
         <input matInput formControlName="title" type="text">
@@ -216,19 +209,21 @@ export class AddSkillDialog implements OnInit {
   }
 
   save() {
+
     const skill = new Skill(
       this.formSkill.get(['id'])?.value,
       this.formSkill.get(["title"])?.value,
       this.formSkill.get(["percentage"])?.value,
       this.user
     );
+
     this.service.saveSkill(skill).subscribe(p => {
         this.snackBar.open("La experiencia se registro correctamente.", "Éxito", {duration: 2000});
+        this.dialogRef.close();
       },
       error => {
         this.snackBar.open(error, "Error", {duration: 2000});
       });
-    this.dialogRef.close();
   }
 
 
@@ -261,7 +256,7 @@ export class DeleteSkillDialog {
   delete(): void {
     this.service.deleteSkill(this.data.id).subscribe(p => {
       this.snackBar.open("La habilidad se elimino correctamente.", "Éxito", {duration: 2000});
+      this.dialogRef.close();
     })
-    this.dialogRef.close();
   }
 }

@@ -40,9 +40,9 @@ export class EducationSectionComponent {
   ngOnInit(): void {
     this.afAuth.onAuthStateChanged((user) => {
       if (user) {
-        this.logged=true;
+        this.logged = true;
       } else {
-        this.logged=false;
+        this.logged = false;
       }
     }).then(r => console.log(r));
     this.getExperiencesByUser(1);
@@ -60,28 +60,26 @@ export class EducationSectionComponent {
   }
 
   add(): void {
-    const dialogRef = this.dialog.open(AddAcademicExperienceDialog);
-
-    dialogRef.afterClosed().subscribe(result => {
+    this.dialog.open(AddAcademicExperienceDialog)
+      .afterClosed().subscribe(result => {
       this.ngOnInit();
     });
   }
 
   delete(experience: AcademicExperience): void {
-    const dialogRef = this.dialog.open(DeleteAcademicExperienceDialog, {
+    this.dialog.open(DeleteAcademicExperienceDialog, {
       data:
         {
           id: experience.id,
           "title": experience.title
         }
-    });
-    dialogRef.afterClosed().subscribe(result => {
+    }).afterClosed().subscribe(result => {
       this.ngOnInit();
     });
   }
 
   editExperience(experience: AcademicExperience): void {
-    const dialogRef = this.dialog.open(UpdateAcademicExperienceDialog, {
+    this.dialog.open(UpdateAcademicExperienceDialog, {
       data: {
         title: experience.title,
         type: experience.type,
@@ -90,9 +88,7 @@ export class EducationSectionComponent {
         user: experience.user,
         id: experience.id
       }
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
+    }).afterClosed().subscribe(result => {
       this.ngOnInit();
     });
   }
@@ -111,8 +107,8 @@ export class EducationSectionComponent {
       </mat-form-field>
       <br>
       <mat-form-field appearance="fill" style="width: 100%">
-        <mat-label>Descripcion</mat-label>
-        <textarea matInput formControlName="description" type="text"></textarea>
+        <mat-label>Tipo/Descripcion</mat-label>
+        <textarea matInput formControlName="type" type="text" placeholder="Ej: Educación secundaria"></textarea>
       </mat-form-field>
       <br>
       <mat-form-field appearance="fill" style="width: 100%">
@@ -152,8 +148,6 @@ export class AddAcademicExperienceDialog implements OnInit {
   }
 
   ngOnInit(): void {
-
-
     this.service.findOne(1).subscribe(p => {
       this.user = p;
     });
@@ -164,6 +158,7 @@ export class AddAcademicExperienceDialog implements OnInit {
   }
 
   save(): void {
+    console.log( this.formExperience.get(["type"])?.value);
     const experience = new AcademicExperience(
       this.formExperience.get(['id'])?.value,
       this.formExperience.get(["title"])?.value,
@@ -174,11 +169,11 @@ export class AddAcademicExperienceDialog implements OnInit {
     );
     this.service.saveAcademicExperience(experience).subscribe(p => {
         this.snackBar.open("La experiencia se registro correctamente.", "Éxito", {duration: 2000});
+        this.dialogRef.close();
       },
       error => {
         this.snackBar.open(error, "Error", {duration: 2000});
       });
-    this.dialogRef.close();
   }
 }
 
@@ -196,7 +191,7 @@ export class AddAcademicExperienceDialog implements OnInit {
       <br>
       <mat-form-field appearance="fill" style="width: 100%">
         <mat-label>Tipo de certificacion</mat-label>
-        <textarea matInput type="text" [(ngModel)]="data.type"></textarea>
+        <textarea matInput type="text" [(ngModel)]="data.type" placeholder="Ej: Educación secundaria"></textarea>
       </mat-form-field>
       <br>
       <mat-form-field appearance="fill" style="width: 100%">
@@ -229,6 +224,7 @@ export class UpdateAcademicExperienceDialog {
   }
 
   save(): void {
+    console.log(this.data.type)
     const experience = new AcademicExperience(
       this.data.id,
       this.data.title,
@@ -239,8 +235,8 @@ export class UpdateAcademicExperienceDialog {
     );
     this.service.updateAcademicExperience(experience).subscribe(p => {
       this.snackBar.open("La experiencia se actualizo correctamente.", "Éxito", {duration: 2000});
+      this.dialogRef.close();
     })
-    this.dialogRef.close();
   }
 }
 
@@ -271,8 +267,8 @@ export class DeleteAcademicExperienceDialog {
   delete(): void {
     this.service.deleteAcademicExperience(this.data.id).subscribe(p => {
       this.snackBar.open("La experiencia se elimino correctamente.", "Éxito", {duration: 2000});
+      this.dialogRef.close();
     })
-    this.dialogRef.close();
   }
 }
 

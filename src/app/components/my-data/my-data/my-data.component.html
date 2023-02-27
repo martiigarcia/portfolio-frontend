@@ -5,15 +5,32 @@
         <mat-card-header>
           <div mat-card-avatar class="example-header-image"></div>
           <div class="div-header">
-            <mat-card-title>Mis datos</mat-card-title>
-            <mat-card-subtitle *ngIf="!editMode" [ngClass]="{'title': !logged}">{{user.information}}</mat-card-subtitle>
-            <mat-form-field appearance="fill" class="info-input" *ngIf="editMode">
-              <mat-label>Mi informacion</mat-label>
-              <textarea matInput formControlName="information"></textarea>
-            </mat-form-field>
+
+            <!--            titulo de la card-->
+
+<!--            <div [ngClass]="{'card-title': !logged}">-->
+              <mat-card-title>Mis datos</mat-card-title>
+<!--            </div>-->
+
+              <!--            va a aparecer esto si no estas logueado:-->
+
+            <div class="infoo" *ngIf="!editMode">
+              <mat-card-subtitle  *ngIf="!editMode">{{user.information}}</mat-card-subtitle>
+            </div>
+
+              <!--            va a aparecer esto si estas logueado:-->
+
+            <div class="info-input" *ngIf="editMode">
+              <mat-form-field appearance="fill" class="info-input" *ngIf="editMode">
+                <mat-label>Mi informacion</mat-label>
+                <textarea matInput formControlName="information"></textarea>
+              </mat-form-field>
+            </div>
+
           </div>
         </mat-card-header>
       </div>
+
       <div class="div-header-option" *ngIf="logged">
         <mat-card-actions align="end">
           <button mat-button (click)="save()" matTooltip="GUARDAR CAMBIOS REALIZADOS" *ngIf="editMode">
