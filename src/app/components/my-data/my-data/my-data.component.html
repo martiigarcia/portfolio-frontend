@@ -3,46 +3,55 @@
     <mat-card-title-group [ngClass]="{'title': !logged}">
       <div class="div-header-titles">
         <mat-card-header>
+
+<!--          foto de perfil-->
           <div mat-card-avatar class="example-header-image"></div>
+
+<!--          mis datos seccion:-->
           <div class="div-header">
 
             <!--            titulo de la card-->
-
 <!--            <div [ngClass]="{'card-title': !logged}">-->
               <mat-card-title>Mis datos</mat-card-title>
 <!--            </div>-->
 
               <!--            va a aparecer esto si no estas logueado:-->
 
-            <div class="infoo" *ngIf="!editMode">
+<!--            <div class="infoo" *ngIf="!editMode">-->
+            <div class="infoo" >
+              <mat-form-field appearance="fill" class="info-input" *ngIf="editMode">
+                <mat-label>Mi informacion</mat-label>
+                <textarea matInput formControlName="information" ></textarea>
+              </mat-form-field>
               <mat-card-subtitle  *ngIf="!editMode">{{user.information}}</mat-card-subtitle>
             </div>
 
               <!--            va a aparecer esto si estas logueado:-->
 
-            <div class="info-input" *ngIf="editMode">
-              <mat-form-field appearance="fill" class="info-input" *ngIf="editMode">
-                <mat-label>Mi informacion</mat-label>
-                <textarea matInput formControlName="information"></textarea>
-              </mat-form-field>
-            </div>
+<!--            <div class="info-input" *ngIf="editMode">-->
+<!--              <mat-form-field appearance="fill" class="info-input" *ngIf="editMode">-->
+<!--                <mat-label>Mi informacion</mat-label>-->
+<!--                <textarea matInput formControlName="information" ></textarea>-->
+<!--              </mat-form-field>-->
+<!--            </div>-->
 
+          </div>
+          <div class="div-header-option" *ngIf="logged">
+            <mat-card-actions align="end">
+              <button mat-button (click)="save()" matTooltip="GUARDAR CAMBIOS REALIZADOS" *ngIf="editMode">
+                <mat-icon>save</mat-icon>
+                GUARDAR
+              </button>
+              <button mat-button (click)="edit()" matTooltip="{{editMode? 'CANCELAR Y CERRAR EDICION ':'EDITAR'}}">
+                <mat-icon>{{editMode ? "close" : "edit"}}</mat-icon>
+                {{editMode ? "" : "EDITAR"}}
+              </button>
+            </mat-card-actions>
           </div>
         </mat-card-header>
       </div>
 
-      <div class="div-header-option" *ngIf="logged">
-        <mat-card-actions align="end">
-          <button mat-button (click)="save()" matTooltip="GUARDAR CAMBIOS REALIZADOS" *ngIf="editMode">
-            <mat-icon>save</mat-icon>
-            GUARDAR
-          </button>
-          <button mat-button (click)="edit()" matTooltip="{{editMode? 'CANCELAR Y CERRAR EDICION ':'EDITAR'}}">
-            <mat-icon>{{editMode ? "close" : "edit"}}</mat-icon>
-            {{editMode ? "" : "EDITAR"}}
-          </button>
-        </mat-card-actions>
-      </div>
+
     </mat-card-title-group>
 
     <div class="main-div">

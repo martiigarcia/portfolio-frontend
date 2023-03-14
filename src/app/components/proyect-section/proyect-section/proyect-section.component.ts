@@ -248,7 +248,7 @@ export class DeleteProyectDialog {
 
   delete(): void {
     this.service.deleteProyect(this.data.id).subscribe(p => {
-      this.snackBar.open("El proyecto se elimino correctamente.", "Éxito", {duration: 2000});
+      this.snackBar.open("El proyecto se elimino correctamente. Recargue la pestaña para ver los cambios actualizados.", "Éxito", {duration: 2000});
       this.dialogRef.close();
     })
   }

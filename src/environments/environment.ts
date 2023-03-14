@@ -8,5 +8,6 @@ export const environment = {
     messagingSenderId: '488478432974',
   },
   production: false,
-  backendUrl: "http://localhost:8090/"
+  // backendUrl: "http://localhost:8090/"
+  backendUrl: "https://springboot-yoprogramo-martiigarcia.koyeb.app/"
 };

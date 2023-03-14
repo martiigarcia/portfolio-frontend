@@ -255,7 +255,7 @@ export class DeleteSkillDialog {
 
   delete(): void {
     this.service.deleteSkill(this.data.id).subscribe(p => {
-      this.snackBar.open("La habilidad se elimino correctamente.", "Éxito", {duration: 2000});
+      this.snackBar.open("La habilidad se elimino correctamente. Recargue la pestaña para ver los cambios actualizados.", "Éxito", {duration: 2000});
       this.dialogRef.close();
     })
   }
