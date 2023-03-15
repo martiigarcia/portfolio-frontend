@@ -30,7 +30,7 @@
                 <!--            <mat-list class="example-list-wrapping">-->
                 <!--              <mat-list-item lines="3">-->
                 <span
-                  matListItemTitle>{{experience.type}} {{experience.title == null ? "" : " - " + experience.title}}</span>
+                  matListItemTitle> {{experience.type}} {{experience.title == ""|| experience.title == null ? "" : " - " + experience.title}}</span>
                 <span>{{experience.period}}</span><br>
                 <span>{{experience.place}}</span>
 

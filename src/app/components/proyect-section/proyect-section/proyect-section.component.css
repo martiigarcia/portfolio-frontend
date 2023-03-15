@@ -34,3 +34,9 @@
 .button{
   box-shadow: unset;
 }
+.description{
+  width: 500px;
+  height: 100px;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}

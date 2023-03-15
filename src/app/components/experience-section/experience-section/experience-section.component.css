@@ -16,8 +16,15 @@
 .p{
   font-size: 17px;
 }
+.description{
+  width: 500px;
+  height: 100px;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
 .grid{
   text-align: justify;
+  overflow-wrap: break-word;
 }
 .vl {
   border-left: 1px solid;
@@ -30,3 +37,4 @@
 .button{
   box-shadow: unset;
 }
+

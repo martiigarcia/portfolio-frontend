@@ -23,13 +23,13 @@
         <mat-grid-list cols="12" class="grid">
           <!-- <mat-grid-list cols="6" class="grid" *ngFor="let proyect of proyects">-->
           <mat-list>
-            <mat-grid-tile [colspan]="6" [rowspan]="2" *ngFor="let proyect of proyects">
-              <mat-list-item [lines]="5">
+            <mat-grid-tile [colspan]="6" [rowspan]="3" *ngFor="let proyect of proyects">
+              <mat-list-item [lines]="15">
 
                 <span matListItemTitle>{{proyect.name}}</span>
                 <br>
-                <span>{{proyect.description}}</span>
-                <br>
+                <textarea disabled class="description">{{proyect.description}}</textarea>
+                <br><br>
                 <span>{{proyect.period}}</span>
                 <br>
                 <br>

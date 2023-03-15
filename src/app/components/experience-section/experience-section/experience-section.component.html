@@ -25,19 +25,24 @@
         <mat-grid-list cols="12" class="grid">
           <!-- <mat-grid-list cols="6" class="grid" *ngFor="let proyect of proyects">-->
           <mat-list>
-            <mat-grid-tile [colspan]="6" [rowspan]="2" *ngFor="let experience of experiences">
-              <mat-list-item [lines]="5">
-                <span matListItemTitle>{{experience.title}}</span>
+            <mat-grid-tile [colspan]="6" [rowspan]="3" *ngFor="let experience of experiences">
+              <mat-list-item [lines]="15">
 
-                <span>{{experience.description}}</span>
-                <br>
+
+                <!--              <mat-card-content class="content">-->
+                <span matListItemTitle>{{experience.title}}</span>
+<br>
+                <textarea disabled class="description">{{experience.description}}</textarea>
+<br>
+                                <br>
                 <span>{{experience.period}}</span>
                 <br>
                 <span>{{experience.place}}</span>
                 <br>
                 <br>
                 <div class="buttons" *ngIf="editMode">
-                  <button class="button" mat-mini-fab color="accent" matTooltip="EDITAR" (click)="editExperience(experience)">
+                  <button class="button" mat-mini-fab color="accent" matTooltip="EDITAR"
+                          (click)="editExperience(experience)">
                     <mat-icon>edit</mat-icon>
                   </button>
                   <button class="button" mat-mini-fab color="warn" matTooltip="ELIMINAR" (click)="delete(experience)">
@@ -45,7 +50,7 @@
                   </button>
                 </div>
                 <hr>
-
+                <!--              </mat-card-content>-->
               </mat-list-item>
             </mat-grid-tile>
           </mat-list>

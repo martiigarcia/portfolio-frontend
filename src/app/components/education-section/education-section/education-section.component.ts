@@ -50,7 +50,7 @@ export class EducationSectionComponent {
 
   getExperiencesByUser(id: number) {
     this.service.findAcademicExperienceByUser(id).subscribe(experience => {
-      // console.log(experience)
+      console.log(experience)
       this.experiences = experience;
     })
   }
